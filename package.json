@@ -1,0 +1,73 @@
+{
+  "name": "itci-interactive",
+  "private": false,
+  "description": "Interactive site for the International Tax Competitiveness Index",
+  "version": "1.0.0",
+  "author": "Tom VanAntwerp <vanantwerp@taxfoundation.org>",
+  "dependencies": {
+    "babel-plugin-styled-components": "^1.10.1",
+    "gatsby": "^2.9.6",
+    "gatsby-image": "^2.1.4",
+    "gatsby-plugin-manifest": "^2.1.1",
+    "gatsby-plugin-netlify": "^2.0.17",
+    "gatsby-plugin-offline": "^2.1.3",
+    "gatsby-plugin-react-helmet": "^3.0.12",
+    "gatsby-plugin-sharp": "^2.1.6",
+    "gatsby-plugin-styled-components": "^3.0.7",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
+    "gatsby-source-filesystem": "^2.0.40",
+    "gatsby-transformer-sharp": "^2.1.21",
+    "gatsby-transformer-yaml": "^2.1.12",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1",
+    "styled-components": "^4.3.1",
+    "styled-reset": "^2.0.15"
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-config-wesbos": "0.0.19",
+    "eslint-plugin-html": "^5.0.3",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.3.0",
+    "prettier": "^1.16.4"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TaxFoundation/itci-interactive"
+  },
+  "bugs": {
+    "url": "https://github.com/TaxFoundation/itci-interactive/issues"
+  },
+  "eslintConfig": {
+    "extends": [
+      "wesbos"
+    ],
+    "rules": {
+      "jsx-a11y/label-has-for": "off",
+      "jsx-a11y/label-has-associated-control": [
+        2,
+        {
+          "assert": "either",
+          "depth": 3
+        }
+      ]
+    }
+  }
+}
