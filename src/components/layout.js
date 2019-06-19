@@ -11,7 +11,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
 
-import Header from './header';
+import Header from './Header';
 import Theme from '../Theme';
 
 const GlobalStyle = createGlobalStyle`
