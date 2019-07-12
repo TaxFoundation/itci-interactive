@@ -12,6 +12,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
 
 import Header from './Header';
+import Main from './Main';
 import Theme from '../Theme';
 
 const GlobalStyle = createGlobalStyle`
@@ -46,10 +47,8 @@ const Layout = ({ children }) => (
           <Reset />
           <GlobalStyle />
           <Header siteTitle={data.site.siteMetadata.title} />
-          <div>
-            <main>{children}</main>
-            <footer></footer>
-          </div>
+          <Main>{children}</Main>
+          <footer></footer>
         </>
       </ThemeProvider>
     )}

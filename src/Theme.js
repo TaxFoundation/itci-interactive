@@ -1,5 +1,6 @@
 const Theme = {
   borderColor: '#333',
+  color: 'hsl(0, 0%, 7%)',
   fontFamilies: {
     lato: 'lato, sans-serif; ',
   },
