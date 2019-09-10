@@ -1,5 +1,5 @@
 const Theme = {
-  borderColor: '#333',
+  borderColor: '#bbb',
   color: 'hsl(0, 0%, 7%)',
   fontFamilies: {
     lato: 'lato, sans-serif; ',
@@ -11,6 +11,12 @@ const Theme = {
   orange: 'hsl(14, 78%, 52%)',
   tfBlue: 'hsl(205, 100%, 50%)',
   white: 'hsl(0, 0%, 100%)',
+  overall: '#E0592A',
+  corporate: '#D2B14E',
+  income: '#CFEA8A',
+  consumption: '#7FC98E',
+  property: '#3FA38F',
+  international: '#1F7B82',
 };
 
 export default Theme;
