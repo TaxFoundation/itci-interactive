@@ -3,14 +3,15 @@ import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
+import flags from '../data/flags.json';
 
 const country = ({ data }) => {
   const theCountry = data.indexCsv;
 
   return (
     <Layout>
-      <SEO />
-      <h1>{theCountry.country}</h1>
+      <SEO title={theCountry.country} />
+      <h1>{`${flags[theCountry.ISO_3]} ${theCountry.country}`}</h1>
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
     </Layout>
