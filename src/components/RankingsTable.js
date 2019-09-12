@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { kebabCase } from 'lodash';
@@ -51,49 +51,46 @@ const Rank = styled.td`
 const RanksingsTable = () => {
   const rankings = useIndexRankings();
   const [orderedBy, setOrderedBy] = useState('country');
+  const [isAscending, setIsAscending] = useState(true);
+  const order = attribute => {
+    if (attribute === orderedBy) {
+      setIsAscending(!isAscending);
+    } else {
+      setOrderedBy(attribute);
+    }
+  };
 
-  rankings.sort((a, b) => a[orderedBy] - b[orderedBy]);
-  console.log(rankings);
+  rankings.sort((a, b) =>
+    isAscending ? a[orderedBy] - b[orderedBy] : b[orderedBy] - a[orderedBy]
+  );
 
   return (
     <StyledRankingsTable>
       <thead>
         <tr>
-          <RankHeading
-            onClick={() => setOrderedBy('country_rank')}
-            name="country"
-          >
+          <RankHeading onClick={() => order('country_rank')} name="country">
             Country
           </RankHeading>
-          <RankHeading onClick={() => setOrderedBy('final_rank')} name="final">
+          <RankHeading onClick={() => order('final_rank')} name="final">
             Overall Rank
           </RankHeading>
-          <RankHeading
-            onClick={() => setOrderedBy('corporate_rank')}
-            name="corporate"
-          >
+          <RankHeading onClick={() => order('corporate_rank')} name="corporate">
             Corporate Taxes
           </RankHeading>
-          <RankHeading
-            onClick={() => setOrderedBy('income_rank')}
-            name="income"
-          >
+          <RankHeading onClick={() => order('income_rank')} name="income">
             Individual Taxes
           </RankHeading>
           <RankHeading
-            onClick={() => setOrderedBy('consumption_rank')}
+            onClick={() => order('consumption_rank')}
             name="consumption"
           >
             Consumption Taxes
           </RankHeading>
-          <RankHeading
-            onClick={() => setOrderedBy('property_rank')}
-            name="property"
-          >
+          <RankHeading onClick={() => order('property_rank')} name="property">
             Property Taxes
           </RankHeading>
           <RankHeading
-            onClick={() => setOrderedBy('international_rank')}
+            onClick={() => order('international_rank')}
             name="international"
           >
             International Tax Rates
