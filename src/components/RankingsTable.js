@@ -21,12 +21,19 @@ const StyledRankingsTable = styled.table`
 `;
 
 const RankHeading = styled.th`
+  background-color: ${props => props.theme.white};
   border-bottom: 5px solid
     ${props => (props.name ? props.theme[props.name] : props.theme.borderColor)};
   border-left: 1px solid ${props => props.theme.borderColor};
   border-right: 1px solid ${props => props.theme.borderColor};
+  cursor: pointer;
   font-weight: 700;
   text-align: ${props => props.align || 'center'};
+  transition: 0.2s ease-in-out background-color;
+
+  &:hover {
+    background-color: ${props => props.theme.tfBlueHighlight};
+  }
 `;
 
 const Country = styled.td`

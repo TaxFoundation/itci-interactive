@@ -10,6 +10,7 @@ const Theme = {
   mobileWidth: '480px',
   orange: 'hsl(14, 78%, 52%)',
   tfBlue: 'hsl(205, 100%, 50%)',
+  tfBlueHighlight: 'hsl(205, 100%, 90%)',
   white: 'hsl(0, 0%, 100%)',
   country: '#bbb',
   final: '#E0592A',
