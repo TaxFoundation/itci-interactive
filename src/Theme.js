@@ -2,7 +2,8 @@ const Theme = {
   borderColor: '#bbb',
   color: 'hsl(0, 0%, 7%)',
   fontFamilies: {
-    lato: 'lato, sans-serif; ',
+    lato: 'Lato, sans-serif',
+    oswald: 'Oswald, sans-serif',
   },
   fontSize: '16px',
   fontWeight: '400',

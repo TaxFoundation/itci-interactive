@@ -20,20 +20,41 @@ const StyledHeader = styled.header`
   a {
     text-decoration: none;
   }
+
+  h1 {
+    font-family: ${props => props.theme.fontFamilies.oswald};
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
 `;
 
 const HeaderContents = styled.div`
   display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(2, minmax(400px, 1fr));
   margin: 0 auto;
   width: 960px;
 `;
 
-const Header = ({ siteTitle }) => (
+const HeaderNavigation = styled.div`
+  display: grid;
+  grid-template: repeat(2, 1fr) / auto;
+`;
+
+const Header = ({ year, siteTitle }) => (
   <StyledHeader>
     <HeaderContents>
       <h1>
-        <Link to="/">{siteTitle}</Link>
+        <Link to="/">
+          <span style={{ fontWeight: 300 }}>{year}</span> {siteTitle}
+        </Link>
       </h1>
+      <HeaderNavigation>
+        <div>stuff</div>
+        <div>things</div>
+      </HeaderNavigation>
     </HeaderContents>
   </StyledHeader>
 );

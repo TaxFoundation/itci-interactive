@@ -37,6 +37,7 @@ const Layout = ({ children }) => (
         site {
           siteMetadata {
             title
+            year
           }
         }
       }
@@ -46,7 +47,10 @@ const Layout = ({ children }) => (
         <>
           <Reset />
           <GlobalStyle />
-          <Header siteTitle={data.site.siteMetadata.title} />
+          <Header
+            year={data.site.siteMetadata.year}
+            siteTitle={data.site.siteMetadata.title}
+          />
           <Main>{children}</Main>
           <footer></footer>
         </>
