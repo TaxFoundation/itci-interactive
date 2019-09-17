@@ -53,7 +53,7 @@ const country = ({ data }) => {
       <DataGrid>
         <CountryTable rankings={data.indexCsv} />
         <div>Map Goes Here</div>
-        <TopAndBottom />
+        <TopAndBottom currentCountryISO3={theCountry.ISO_3} />
       </DataGrid>
       <Divider />
       <Profiles profiles={data.profilesCsv}></Profiles>

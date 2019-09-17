@@ -6,29 +6,46 @@ import { kebabCase } from 'lodash';
 
 import flags from '../data/flags.json';
 
-const StyledCountryLink = styled(Link)`
-  align-items: center;
-  color: ${props => props.theme.color};
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-gap: 0.7rem;
-  text-decoration: none;
+const StyledCountry = styled.li`
+  border-bottom: 1px solid ${props => props.theme.borderColor};
+
+  &:last-child {
+    border: none;
+  }
+
+  a {
+    align-items: center;
+    background-color: ${props =>
+      props.active ? props.theme.tfBlueHighlight : props.theme.white};
+    color: ${props => props.theme.color};
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 0.7rem;
+    padding: 0.25rem;
+    text-decoration: none;
+  }
 `;
 
-const Country = ({ country }) => (
-  <li>
-    <StyledCountryLink to={`/${kebabCase(country.country)}`}>
+const TopBottomHeading = styled.h3`
+  font-size: 1.2rem;
+  font-weight: 700;
+`;
+
+const Country = ({ country, active }) => (
+  <StyledCountry active={active}>
+    <Link to={`/${kebabCase(country.country)}`}>
       <div aria-hidden="true">{flags[country.ISO_3]}</div>
-      <div>{country.country}</div>
-    </StyledCountryLink>
-  </li>
+      <div>{`#${country.final_rank} ${country.country}`}</div>
+    </Link>
+  </StyledCountry>
 );
 
 Country.propTypes = {
+  active: PropTypes.bool,
   country: PropTypes.object.isRequired,
 };
 
-const TopAndBottom = () => {
+const TopAndBottom = ({ currentCountryISO3 }) => {
   const { allIndexCsv } = useStaticQuery(graphql`
     query theList {
       allIndexCsv {
@@ -47,27 +64,40 @@ const TopAndBottom = () => {
     .sort((a, b) => a.final_rank - b.final_rank);
   const topFive = countries.slice(0, 5);
   const bottomFive = countries.slice(-5);
+  console.log(currentCountryISO3);
 
   return (
     <div>
       <section>
-        <h3>Top Five</h3>
+        <TopBottomHeading>Top Five</TopBottomHeading>
         <ol>
           {topFive.map(country => (
-            <Country country={country} />
+            <Country
+              key={`country-rankings-${country.ISO_3}`}
+              country={country}
+              active={currentCountryISO3 === country.ISO_3}
+            />
           ))}
         </ol>
       </section>
       <section>
-        <h3>Bottom Five</h3>
+        <TopBottomHeading>Bottom Five</TopBottomHeading>
         <ol>
           {bottomFive.map(country => (
-            <Country country={country} />
+            <Country
+              key={`country-rankings-${country.ISO_3}`}
+              country={country}
+              active={currentCountryISO3 === country.ISO_3}
+            />
           ))}
         </ol>
       </section>
     </div>
   );
+};
+
+TopAndBottom.propTypes = {
+  currentCountryISO3: PropTypes.string.isRequired,
 };
 
 export default TopAndBottom;

@@ -66,7 +66,7 @@ const CountryTable = ({ rankings }) => (
     </thead>
     <tbody>
       {ranks.map(rank => (
-        <tr key={`country-table-${rankings.ISO_3}`}>
+        <tr key={`country-table-${rank.id}`}>
           <RankHeading name={rank.id}>{rank.name}</RankHeading>
           <Rank>{rankings[`${rank.id}_rank`]}</Rank>
           <Rank>{round(rankings[rank.id], 2)}</Rank>
