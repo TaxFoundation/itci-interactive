@@ -1,0 +1,25 @@
+[{
+    "id": "final",
+    "name": "Overall Rank"
+  },
+  {
+    "id": "corporate",
+    "name": "Corporate Taxes"
+  },
+  {
+    "id": "income",
+    "name": "Individual Taxes"
+  },
+  {
+    "id": "consumption",
+    "name": "Consumption Taxes"
+  },
+  {
+    "id": "property",
+    "name": "Property Taxes"
+  },
+  {
+    "id": "international",
+    "name": "International Tax Rules"
+  }
+]

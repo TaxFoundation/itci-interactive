@@ -6,6 +6,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import flags from '../data/flags.json';
+import CountryTable from '../components/CountryTable';
 import TopAndBottom from '../components/TopAndBottom';
 import Profiles from '../components/Profiles';
 
@@ -18,6 +19,14 @@ const CountryHeading = styled.h1`
   text-transform: uppercase;
 `;
 
+const Divider = styled.hr`
+  border: none;
+  height: 1px;
+  background: ${props => props.theme.borderColor};
+  margin: 1rem 0;
+  width: 100%;
+`;
+
 const country = ({ data }) => {
   const theCountry = { ...data.indexCsv, ...data.profilesCsv };
 
@@ -28,7 +37,9 @@ const country = ({ data }) => {
         theCountry.country
       }`}</CountryHeading>
       <p>{theCountry.ranking}</p>
+      <CountryTable rankings={data.indexCsv} />
       <TopAndBottom />
+      <Divider />
       <Profiles profiles={data.profilesCsv}></Profiles>
     </Layout>
   );
