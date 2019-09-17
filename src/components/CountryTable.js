@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { round } from 'lodash';
 
 import ranks from '../data/ranks.json';
 
@@ -61,7 +62,7 @@ const CountryTable = ({ rankings }) => (
         <tr key={`country-table-${rankings.ISO_3}`}>
           <RankHeading name={rank.id}>{rank.name}</RankHeading>
           <Rank>{rankings[`${rank.id}_rank`]}</Rank>
-          <Rank>{rankings[rank.id]}</Rank>
+          <Rank>{round(rankings[rank.id], 2)}</Rank>
         </tr>
       ))}
     </tbody>
