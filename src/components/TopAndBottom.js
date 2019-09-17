@@ -1,5 +1,32 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Link, useStaticQuery, graphql } from 'gatsby';
+import { kebabCase } from 'lodash';
+
+import flags from '../data/flags.json';
+
+const StyledCountryLink = styled(Link)`
+  align-items: center;
+  color: ${props => props.theme.color};
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 0.7rem;
+  text-decoration: none;
+`;
+
+const Country = ({ country }) => (
+  <li>
+    <StyledCountryLink to={`/${kebabCase(country.country)}`}>
+      <div aria-hidden="true">{flags[country.ISO_3]}</div>
+      <div>{country.country}</div>
+    </StyledCountryLink>
+  </li>
+);
+
+Country.propTypes = {
+  country: PropTypes.object.isRequired,
+};
 
 const TopAndBottom = () => {
   const { allIndexCsv } = useStaticQuery(graphql`
@@ -8,6 +35,7 @@ const TopAndBottom = () => {
         edges {
           node {
             country
+            ISO_3
             final_rank
           }
         }
@@ -25,13 +53,17 @@ const TopAndBottom = () => {
       <section>
         <h3>Top Five</h3>
         <ol>
-          <li>{topFive.map(n => n.country)}</li>
+          {topFive.map(country => (
+            <Country country={country} />
+          ))}
         </ol>
       </section>
       <section>
         <h3>Bottom Five</h3>
         <ol>
-          <li>{bottomFive.map(n => n.country)}</li>
+          {bottomFive.map(country => (
+            <Country country={country} />
+          ))}
         </ol>
       </section>
     </div>
