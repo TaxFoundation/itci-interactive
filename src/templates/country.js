@@ -19,6 +19,19 @@ const CountryHeading = styled.h1`
   text-transform: uppercase;
 `;
 
+const Summary = styled.p`
+  background-color: ${props => props.theme.tfBlueHighlight};
+  margin: 1rem 0;
+  padding: 1rem;
+  text-align: center;
+`;
+
+const DataGrid = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr 1fr 25%;
+`;
+
 const Divider = styled.hr`
   border: none;
   height: 1px;
@@ -36,9 +49,12 @@ const country = ({ data }) => {
       <CountryHeading>{`${flags[theCountry.ISO_3]} ${
         theCountry.country
       }`}</CountryHeading>
-      <p>{theCountry.ranking}</p>
-      <CountryTable rankings={data.indexCsv} />
-      <TopAndBottom />
+      <Summary>{theCountry.ranking}</Summary>
+      <DataGrid>
+        <CountryTable rankings={data.indexCsv} />
+        <div>Map Goes Here</div>
+        <TopAndBottom />
+      </DataGrid>
       <Divider />
       <Profiles profiles={data.profilesCsv}></Profiles>
     </Layout>

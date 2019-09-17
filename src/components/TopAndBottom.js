@@ -21,20 +21,20 @@ const TopAndBottom = () => {
   const bottomFive = countries.slice(-5);
 
   return (
-    <>
-      <div>
+    <div>
+      <section>
         <h3>Top Five</h3>
         <ol>
           <li>{topFive.map(n => n.country)}</li>
         </ol>
-      </div>
-      <div>
+      </section>
+      <section>
         <h3>Bottom Five</h3>
         <ol>
           <li>{bottomFive.map(n => n.country)}</li>
         </ol>
-      </div>
-    </>
+      </section>
+    </div>
   );
 };
 
