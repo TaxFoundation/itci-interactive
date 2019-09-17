@@ -7,14 +7,12 @@ import ranks from '../data/ranks.json';
 
 const StyledRankingsTable = styled.table`
   border: 1px solid ${props => props.theme.borderColor};
-  table-layout: fixed;
   width: 100%;
 
   th,
   td {
     border: 1px solid ${props => props.theme.borderColor};
     font-size: 1rem;
-    line-height: 1;
     padding: 0.5rem;
     vertical-align: middle;
     padding: 0.5rem;
@@ -39,6 +37,7 @@ const RankHeading = styled.td`
     ${props => (props.name ? props.theme[props.name] : props.theme.borderColor)};
   box-shadow: inset -5px 0 ${props => (props.name ? props.theme[props.name] : props.theme.borderColor)};
   font-weight: 700;
+  line-height: 1.4;
 
   a {
     align-items: center;
