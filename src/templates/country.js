@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import flags from '../data/flags.json';
+import TopAndBottom from '../components/TopAndBottom';
 
 const country = ({ data }) => {
   const theCountry = data.indexCsv;
@@ -14,6 +15,7 @@ const country = ({ data }) => {
       <h1>{`${flags[theCountry.ISO_3]} ${theCountry.country}`}</h1>
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
+      <TopAndBottom />
     </Layout>
   );
 };

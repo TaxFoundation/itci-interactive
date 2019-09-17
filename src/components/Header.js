@@ -61,10 +61,7 @@ const Header = ({ year, siteTitle }) => (
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
-};
-
-Header.defaultProps = {
-  siteTitle: ``,
+  year: PropTypes.number,
 };
 
 export default Header;
