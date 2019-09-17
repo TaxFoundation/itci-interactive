@@ -19,6 +19,13 @@ const StyledRankingsTable = styled.table`
     vertical-align: middle;
     padding: 0.5rem;
   }
+
+  caption {
+    background-color: ${props => props.theme.orange};
+    border: 1px solid ${props => props.theme.orange};
+    color: ${props => props.theme.white};
+    padding: 0.5rem;
+  }
 `;
 
 const TableHeading = styled.th`
