@@ -53,7 +53,7 @@ const Layout = ({ children }) => (
               siteTitle={data.site.siteMetadata.title}
             />
             <Main>{children}</Main>
-            <Footer />
+            <Footer year={data.site.siteMetadata.year} />
           </StyledLayout>
         </>
       </ThemeProvider>
