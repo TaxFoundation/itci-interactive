@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 
+import Logo from './Logo';
+import Theme from '../Theme';
+
 const StyledHeader = styled.header`
   background-color: ${props => props.theme.orange};
   color: ${props => props.theme.white};
-  height: 100px;
+  padding: 1rem;
 
   h1,
   a,
@@ -46,11 +49,20 @@ const HeaderNavigation = styled.div`
 const Header = ({ year, siteTitle }) => (
   <StyledHeader>
     <HeaderContents>
-      <h1>
-        <Link to="/">
-          <span style={{ fontWeight: 300 }}>{year}</span> {siteTitle}
-        </Link>
-      </h1>
+      <div>
+        <a
+          href="https://taxfoundation.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Logo fill={Theme.white}></Logo>
+        </a>
+        <h1>
+          <Link to="/">
+            <span style={{ fontWeight: 300 }}>{year}</span> {siteTitle}
+          </Link>
+        </h1>
+      </div>
       <HeaderNavigation>
         <div>stuff</div>
         <div>things</div>
