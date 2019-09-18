@@ -1,18 +1,12 @@
-/**
- * Layout component that queries for data
- * with Gatsby's StaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/static-query/
- */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
 
 import Header from './Header';
 import Main from './Main';
+import Footer from './Footer';
 import Theme from '../Theme';
 
 const GlobalStyle = createGlobalStyle`
@@ -28,6 +22,12 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     line-height: 1.6;
   }
+`;
+
+const StyledLayout = styled.div`
+  display: grid;
+  grid-template: auto 1fr auto / auto;
+  min-height: 100vh;
 `;
 
 const Layout = ({ children }) => (
@@ -47,12 +47,14 @@ const Layout = ({ children }) => (
         <>
           <Reset />
           <GlobalStyle />
-          <Header
-            year={data.site.siteMetadata.year}
-            siteTitle={data.site.siteMetadata.title}
-          />
-          <Main>{children}</Main>
-          <footer></footer>
+          <StyledLayout>
+            <Header
+              year={data.site.siteMetadata.year}
+              siteTitle={data.site.siteMetadata.title}
+            />
+            <Main>{children}</Main>
+            <Footer />
+          </StyledLayout>
         </>
       </ThemeProvider>
     )}
