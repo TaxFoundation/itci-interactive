@@ -13,7 +13,7 @@ const StyledRankingsTable = styled.table`
 
   th,
   td {
-    font-size: 1rem;
+    font-size: calc(0.7rem + 0.4vw);
     line-height: 1;
     padding: 0.5rem;
     vertical-align: middle;

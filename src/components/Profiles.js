@@ -6,7 +6,7 @@ import { range } from 'lodash';
 const ProfilesContainer = styled.div`
   display: grid;
   grid-gap: 2rem;
-  grid-template: auto / repeat(2, minmax(auto, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 `;
 
 const ProfileHeading = styled.h3`

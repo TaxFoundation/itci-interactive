@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Logo from './Logo';
@@ -11,7 +12,8 @@ const StyledFooter = styled.footer`
 
 const FooterContents = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, minmax(auto, 480px));
+  justify-content: center;
   margin: 0 auto;
   padding: 2rem 1rem;
 `;
@@ -50,5 +52,9 @@ const Footer = ({ year }) => (
     <FooterBottom>Copyright {year} Tax Foundation</FooterBottom>
   </StyledFooter>
 );
+
+Footer.propTypes = {
+  year: PropTypes.number,
+};
 
 export default Footer;
