@@ -26,7 +26,7 @@ const StyledHeader = styled.header`
 
   h1 {
     font-family: ${props => props.theme.fontFamilies.oswald};
-    font-size: 2.5rem;
+    font-size: calc(1rem + 2vw);
     font-weight: 400;
     line-height: 1.1;
     text-transform: uppercase;
@@ -36,9 +36,8 @@ const StyledHeader = styled.header`
 const HeaderContents = styled.div`
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(2, minmax(400px, 1fr));
-  margin: 0 auto;
-  width: 960px;
+  grid-template-columns: repeat(2, minmax(auto, 480px));
+  justify-content: center;
 `;
 
 const HeaderNavigation = styled.div`

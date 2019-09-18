@@ -9,8 +9,8 @@ const StyledMain = styled.main`
 
 const MainContents = styled.div`
   display: grid;
-  margin: 0 auto;
-  width: 960px;
+  grid-template-columns: minmax(auto, 960px);
+  justify-content: center;
 `;
 
 const Main = ({ children }) => (

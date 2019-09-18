@@ -29,7 +29,7 @@ const Summary = styled.p`
 const DataGrid = styled.div`
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: 25% 1fr 25%;
+  grid-template: auto / repeat(3, minmax(auto, 1fr));
 `;
 
 const Divider = styled.hr`

@@ -7,8 +7,6 @@ const Theme = {
   },
   fontSize: '16px',
   fontWeight: '400',
-  maxWidth: '1000px',
-  mobileWidth: '480px',
   orange: 'hsl(14, 78%, 52%)',
   tfBlue: 'hsl(205, 100%, 50%)',
   tfBlueHighlight: 'hsl(205, 100%, 90%)',

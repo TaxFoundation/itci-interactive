@@ -11,10 +11,9 @@ const StyledFooter = styled.footer`
 
 const FooterContents = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(300px, 1fr));
   margin: 0 auto;
   padding: 2rem 1rem;
-  width: 960px;
 `;
 
 const FooterBottom = styled.div`

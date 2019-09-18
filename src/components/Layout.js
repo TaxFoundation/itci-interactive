@@ -19,14 +19,13 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${props => props.theme.fontFamilies.lato};
     font-size: ${props => props.theme.fontSize};
     font-weight: ${props => props.theme.fontWeight};
-    height: 100%;
     line-height: 1.6;
   }
 `;
 
 const StyledLayout = styled.div`
   display: grid;
-  grid-template: auto 1fr auto / auto;
+  grid-template: auto 1fr auto;
   min-height: 100vh;
 `;
 

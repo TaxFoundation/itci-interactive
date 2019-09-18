@@ -7,7 +7,6 @@ import ranks from '../data/ranks.json';
 
 const StyledRankingsTable = styled.table`
   border: 1px solid ${props => props.theme.borderColor};
-  width: 100%;
 
   th,
   td {
