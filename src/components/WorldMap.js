@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import { geoPath, geoEqualEarth } from 'd3-geo';
@@ -18,10 +18,29 @@ import world from '../data/world.json';
 import useIndexRankings from '../data/useIndexRankings';
 
 const WorldMap = () => {
+  const [region, setRegion] = useState('world');
+  const regions = {
+    europe: {
+      scale: 100,
+      translation: [600 / 2, 400 / 2],
+    },
+    northAmerica: {
+      scale: 100,
+      translation: [600 / 2, 400 / 2],
+    },
+    southAmerica: {
+      scale: 100,
+      translation: [600 / 2, 400 / 2],
+    },
+    world: {
+      scale: 100,
+      translation: [600 / 2, 400 / 2],
+    },
+  };
   const rankings = useIndexRankings();
   const projection = geoRobinson()
-    .scale(100)
-    .translate([600 / 2, 400 / 2]);
+    .scale(regions[region].scale)
+    .translate(regions[region].translation);
   const path = geoPath(projection);
   const { features } = feature(world, world.objects.countries);
 
