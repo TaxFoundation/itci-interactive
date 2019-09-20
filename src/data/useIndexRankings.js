@@ -1,6 +1,6 @@
 import { useStaticQuery, graphql } from 'gatsby';
 
-export const useIndexRankings = () => {
+const useIndexRankings = () => {
   const { allIndexCsv } = useStaticQuery(graphql`
     query rankings {
       allIndexCsv {
@@ -29,3 +29,5 @@ export const useIndexRankings = () => {
   `);
   return allIndexCsv.edges.map(node => node.node);
 };
+
+export default useIndexRankings;
