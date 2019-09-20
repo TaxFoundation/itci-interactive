@@ -18,11 +18,10 @@ import useIndexRankings from '../data/useIndexRankings';
 
 const WorldMap = () => {
   const rankings = useIndexRankings();
-  const projection = () =>
-    geoEqualEarth()
-      .scale(800)
-      .translate([600 / 2, 400 / 2]);
-  const path = geoPath(geoEqualEarth());
+  const projection = geoEqualEarth()
+    .scale(100)
+    .translate([600 / 2, 400 / 2]);
+  const path = geoPath(projection);
   const { features } = feature(world, world.objects.countries);
 
   const countries = features.map(c => (
@@ -31,6 +30,7 @@ const WorldMap = () => {
       id={`country-${c.id}`}
       key={`country-${c.id}`}
       stroke="#ffffff"
+      strokeWidth="0.1"
       strokeLinejoin="bevel"
     />
   ));
