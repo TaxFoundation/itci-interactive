@@ -66,7 +66,7 @@ const Footer = ({ year }) => (
         >
           <Logo fill={Theme.tfBlue}></Logo>
         </a>
-        <p>
+        <p style={{ margin: '0.2rem 0 0 2.4rem' }}>
           1325 G St NW
           <br />
           Suite 950

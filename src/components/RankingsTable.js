@@ -13,7 +13,7 @@ const StyledRankingsTable = styled.table`
 
   th,
   td {
-    font-size: calc(0.7rem + 0.4vw);
+    font-size: calc(0.5rem + 0.4vw);
     line-height: 1;
     padding: 0.5rem;
     vertical-align: middle;
@@ -30,6 +30,39 @@ const RankHeading = styled.th`
   font-weight: 700;
   text-align: ${props => props.align || 'center'};
   transition: 0.2s ease-in-out background-color;
+
+  div {
+    padding-right: 0.5rem;
+    position: relative;
+
+    &::after,
+    &::before {
+      border: 4px solid transparent;
+      content: '';
+      display: block;
+      height: 0;
+      right: 0;
+      top: 50%;
+      position: absolute;
+      width: 0;
+    }
+
+    &::before {
+      border-bottom-color: ${props =>
+        props.ascending && props.orderedBy === `${props.name}_rank`
+          ? props.theme.color
+          : props.theme.borderColor};
+      margin-top: -9px;
+    }
+
+    &::after {
+      border-top-color: ${props =>
+        !props.ascending && props.orderedBy === `${props.name}_rank`
+          ? props.theme.color
+          : props.theme.borderColor};
+      margin-top: 1px;
+    }
+  }
 
   &:hover {
     background-color: ${props => props.theme.tfBlueHighlight};
@@ -75,32 +108,61 @@ const RanksingsTable = () => {
     <StyledRankingsTable>
       <thead>
         <tr>
-          <RankHeading onClick={() => order('country_rank')} name="country">
-            Country
-          </RankHeading>
-          <RankHeading onClick={() => order('final_rank')} name="final">
-            Overall Rank
-          </RankHeading>
-          <RankHeading onClick={() => order('corporate_rank')} name="corporate">
-            Corporate Taxes
-          </RankHeading>
-          <RankHeading onClick={() => order('income_rank')} name="income">
-            Individual Taxes
+          <RankHeading
+            ascending={isAscending}
+            orderedBy={orderedBy}
+            onClick={() => order('country_rank')}
+            name="country"
+          >
+            <div>Country</div>
           </RankHeading>
           <RankHeading
+            ascending={isAscending}
+            orderedBy={orderedBy}
+            onClick={() => order('final_rank')}
+            name="final"
+          >
+            <div>Overall Rank</div>
+          </RankHeading>
+          <RankHeading
+            ascending={isAscending}
+            orderedBy={orderedBy}
+            onClick={() => order('corporate_rank')}
+            name="corporate"
+          >
+            <div>Corporate Taxes</div>
+          </RankHeading>
+          <RankHeading
+            ascending={isAscending}
+            orderedBy={orderedBy}
+            onClick={() => order('income_rank')}
+            name="income"
+          >
+            <div>Individual Taxes</div>
+          </RankHeading>
+          <RankHeading
+            ascending={isAscending}
+            orderedBy={orderedBy}
             onClick={() => order('consumption_rank')}
             name="consumption"
           >
-            Consumption Taxes
-          </RankHeading>
-          <RankHeading onClick={() => order('property_rank')} name="property">
-            Property Taxes
+            <div>Consumption Taxes</div>
           </RankHeading>
           <RankHeading
+            ascending={isAscending}
+            orderedBy={orderedBy}
+            onClick={() => order('property_rank')}
+            name="property"
+          >
+            <div>Property Taxes</div>
+          </RankHeading>
+          <RankHeading
+            ascending={isAscending}
+            orderedBy={orderedBy}
             onClick={() => order('international_rank')}
             name="international"
           >
-            International Tax Rates
+            <div>International Tax Rates</div>
           </RankHeading>
         </tr>
       </thead>
