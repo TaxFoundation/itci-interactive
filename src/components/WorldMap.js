@@ -19,14 +19,16 @@ import useIndexRankings from '../data/useIndexRankings';
 
 const Container = styled.div`
   display: grid;
+  grid-gap: 1rem;
   grid-template: auto / repeat(3, 1fr);
   grid-template-areas:
     'map map data'
     'map map region';
+  margin: 1rem 0;
 `;
 
 const WorldMap = () => {
-  const [region, setRegion] = useState('southAmerica');
+  const [region, setRegion] = useState('europe');
   const [ranking, setRanking] = useState('final_rank');
   const regions = {
     europe: {
@@ -91,7 +93,11 @@ const WorldMap = () => {
 
   return (
     <Container>
-      <svg style={{ gridArea: 'map' }} width="100%" viewBox="0 0 600 600">
+      <svg
+        style={{ border: '1px solid #bbb', gridArea: 'map' }}
+        width="100%"
+        viewBox="0 0 600 600"
+      >
         <g>{countries}</g>
       </svg>
       <div style={{ gridArea: 'data' }}></div>
