@@ -15,6 +15,7 @@ import {
 import { feature } from 'topojson-client';
 
 import world from '../data/world.json';
+import ranks from '../data/ranks.json'
 import useIndexRankings from '../data/useIndexRankings';
 
 const Container = styled.div`
@@ -27,9 +28,24 @@ const Container = styled.div`
   margin: 1rem 0;
 `;
 
+const StyledBox = styled.div`
+  border: 1px solid ${props => props.theme.borderColor};
+
+  h2 {
+    background-color: ${props => props.theme.orange};
+    border: 1px solid ${props => props.theme.orange};
+    color: ${props => props.theme.white};
+    margin: -1px;
+    padding: 0.5rem;
+    text-align: center;
+  }
+`;
+
 const WorldMap = () => {
   const [region, setRegion] = useState('europe');
   const [ranking, setRanking] = useState('final_rank');
+  const [activeCountry, setActiveCountry] = useState(null);
+
   const regions = {
     europe: {
       name: 'Europe',
@@ -80,6 +96,7 @@ const WorldMap = () => {
           d={path(c)}
           id={`country-${c.id}`}
           key={`country-${c.id}-${i}`}
+          onMouseEnter={() => country && setActiveCountry(country)}
           stroke="#ffffff"
           strokeWidth="0.1"
           strokeLinejoin="bevel"
@@ -100,12 +117,29 @@ const WorldMap = () => {
       >
         <g>{countries}</g>
       </svg>
-      <div style={{ gridArea: 'data' }}></div>
-      <div style={{ gridArea: 'region' }}>
+      <StyledBox style={{ gridArea: 'data' }}>
+        <h2>{activeCountry ? `${activeCountry.country}'s Rankings` : 'Hover Over a Country'}</h2>
+        {activeCountry && <table>
+          <thead>
+            <tr>
+              <th>Tax Type</th>
+              <th>Rank</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ranks.map(rank => <tr>
+              <td>{rank.name}</td>
+              <td>{activeCountry[`${rank.id}_rank`]}</td>
+            </tr>)}
+          </tbody>
+        </table>}
+      </StyledBox>
+      <StyledBox style={{ gridArea: 'region' }}>
+        <h2>Select a View</h2>
         {Object.keys(regions).map(k => (
           <p onClick={() => setRegion(k)}>{regions[k].name}</p>
         ))}
-      </div>
+      </StyledBox>
     </Container>
   );
 };
