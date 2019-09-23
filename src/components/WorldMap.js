@@ -21,7 +21,7 @@ import useIndexRankings from '../data/useIndexRankings';
 const Container = styled.div`
   display: grid;
   grid-gap: 1rem;
-  grid-template: auto / repeat(3, 1fr);
+  grid-template: 3fr 2fr / repeat(3, 1fr);
   grid-template-areas:
     'map map data'
     'map map region';
@@ -38,6 +38,36 @@ const StyledBox = styled.div`
     margin: -1px;
     padding: 0.5rem;
     text-align: center;
+  }
+`;
+
+const RankingsTable = styled.table`
+  border-collapse: separate;
+  font-size: 1rem;
+  margin: 1rem auto;
+
+  th,
+  td {
+    padding: 0.5rem;
+  }
+
+  th {
+    font-weight: 700;
+  }
+`;
+
+const RankName = styled.td`
+  position: relative;
+  text-align: left;
+
+  &::before {
+    background-color: ${props => props.theme[props.rank]};
+    bottom: 0.3rem;
+    content: '';
+    left: -4px;
+    position: absolute;
+    top: 0.3rem;
+    width: 4px;
   }
 `;
 
@@ -142,22 +172,24 @@ const WorldMap = () => {
             : 'Hover Over a Country'}
         </h2>
         {activeCountry && (
-          <table>
+          <RankingsTable>
             <thead>
               <tr>
-                <th>Tax Type</th>
+                <th style={{ textAlign: 'left' }}>Tax Type</th>
                 <th>Rank</th>
               </tr>
             </thead>
             <tbody>
               {ranks.map(rank => (
                 <tr>
-                  <td>{rank.name}</td>
-                  <td>{activeCountry[`${rank.id}_rank`]}</td>
+                  <RankName rank={rank.id}>{rank.name}</RankName>
+                  <td style={{ textAlign: 'right' }}>
+                    {`#${activeCountry[`${rank.id}_rank`]}`}
+                  </td>
                 </tr>
               ))}
             </tbody>
-          </table>
+          </RankingsTable>
         )}
       </StyledBox>
       <StyledBox style={{ gridArea: 'region' }}>
