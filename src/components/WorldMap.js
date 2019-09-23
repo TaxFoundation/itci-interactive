@@ -26,23 +26,23 @@ const Container = styled.div`
 `;
 
 const WorldMap = () => {
-  const [region, setRegion] = useState('world');
+  const [region, setRegion] = useState('southAmerica');
   const [ranking, setRanking] = useState('final_rank');
   const regions = {
     europe: {
       name: 'Europe',
-      scale: 100,
-      translation: [600 / 2, 600 / 2],
+      scale: 600,
+      translation: [600 / 2 - 100, 600 / 2 + 600],
     },
     northAmerica: {
       name: 'North America',
-      scale: 100,
-      translation: [600 / 2, 600 / 2],
+      scale: 350,
+      translation: [600 / 2 + 500, 600 / 2 + 300],
     },
     southAmerica: {
       name: 'South America',
-      scale: 100,
-      translation: [600 / 2, 600 / 2],
+      scale: 350,
+      translation: [600 / 2 + 350, 600 / 2 - 100],
     },
     world: {
       name: 'World',
@@ -73,17 +73,19 @@ const WorldMap = () => {
   const countries = features.map((c, i) => {
     const country = rankings.find(r => r.ISO_3 === c.id);
     return (
-      <path
-        d={path(c)}
-        id={`country-${c.id}`}
-        key={`country-${c.id}-${i}`}
-        stroke="#ffffff"
-        strokeWidth="0.1"
-        strokeLinejoin="bevel"
-        fill={
-          country ? gradients[ranking](scaleRanks(country[ranking])) : '#bbb'
-        }
-      />
+      c.id !== 'ATA' && (
+        <path
+          d={path(c)}
+          id={`country-${c.id}`}
+          key={`country-${c.id}-${i}`}
+          stroke="#ffffff"
+          strokeWidth="0.1"
+          strokeLinejoin="bevel"
+          fill={
+            country ? gradients[ranking](scaleRanks(country[ranking])) : '#bbb'
+          }
+        />
+      )
     );
   });
 
