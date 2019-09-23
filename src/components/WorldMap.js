@@ -21,10 +21,10 @@ import useIndexRankings from '../data/useIndexRankings';
 const Container = styled.div`
   display: grid;
   grid-gap: 1rem;
-  grid-template: 3fr 2fr / repeat(3, 1fr);
+  grid-template: 1fr auto / minmax(600px, 2fr) 1fr;
   grid-template-areas:
-    'map map data'
-    'map map region';
+    'map data'
+    'map region';
   margin: 1rem 0;
 `;
 
@@ -43,12 +43,12 @@ const StyledBox = styled.div`
 
 const RankingsTable = styled.table`
   border-collapse: separate;
-  font-size: 1rem;
-  margin: 1rem auto;
+  font-size: 0.9rem;
+  margin: 0.8rem auto;
 
   th,
   td {
-    padding: 0.5rem;
+    padding: 0.4rem;
   }
 
   th {
@@ -87,6 +87,12 @@ const RegionSelector = styled.div`
   &:hover {
     background-color: ${props => props.theme.lightOrange};
   }
+`;
+
+const Disclaimer = styled.p`
+  color: #666;
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
 `;
 
 const WorldMap = () => {
@@ -160,7 +166,9 @@ const WorldMap = () => {
     <Container>
       <svg
         style={{ border: '1px solid #bbb', gridArea: 'map' }}
+        height="100%"
         width="100%"
+        preserveAspectRatio="xMidYMid slice"
         viewBox="0 0 600 600"
       >
         <g>{countries}</g>
@@ -203,6 +211,10 @@ const WorldMap = () => {
             {regions[k].name}
           </RegionSelector>
         ))}
+        <Disclaimer>
+          Note: for purposes of data consistency, this Index only compares OECD
+          countries.
+        </Disclaimer>
       </StyledBox>
     </Container>
   );
