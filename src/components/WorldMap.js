@@ -17,25 +17,37 @@ import { feature } from 'topojson-client';
 import world from '../data/world.json';
 import useIndexRankings from '../data/useIndexRankings';
 
+const Container = styled.div`
+  display: grid;
+  grid-template: auto / repeat(3, 1fr);
+  grid-template-areas:
+    'map map data'
+    'map map region';
+`;
+
 const WorldMap = () => {
   const [region, setRegion] = useState('world');
   const [ranking, setRanking] = useState('final_rank');
   const regions = {
     europe: {
+      name: 'Europe',
       scale: 100,
-      translation: [600 / 2, 400 / 2],
+      translation: [600 / 2, 600 / 2],
     },
     northAmerica: {
+      name: 'North America',
       scale: 100,
-      translation: [600 / 2, 400 / 2],
+      translation: [600 / 2, 600 / 2],
     },
     southAmerica: {
+      name: 'South America',
       scale: 100,
-      translation: [600 / 2, 400 / 2],
+      translation: [600 / 2, 600 / 2],
     },
     world: {
-      scale: 100,
-      translation: [600 / 2, 400 / 2],
+      name: 'World',
+      scale: 110,
+      translation: [600 / 2 - 30, 600 / 2],
     },
   };
   const gradients = {
@@ -76,11 +88,17 @@ const WorldMap = () => {
   });
 
   return (
-    <div>
-      <svg width="100%" viewBox="0 0 600 400">
+    <Container>
+      <svg style={{ gridArea: 'map' }} width="100%" viewBox="0 0 600 600">
         <g>{countries}</g>
       </svg>
-    </div>
+      <div style={{ gridArea: 'data' }}></div>
+      <div style={{ gridArea: 'region' }}>
+        {Object.keys(regions).map(k => (
+          <p onClick={() => setRegion(k)}>{regions[k].name}</p>
+        ))}
+      </div>
+    </Container>
   );
 };
 
