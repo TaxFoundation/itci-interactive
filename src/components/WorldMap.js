@@ -13,6 +13,7 @@ import {
   interpolateRdPu,
 } from 'd3-scale-chromatic';
 import { feature } from 'topojson-client';
+import { kebabCase } from 'lodash';
 
 import world from '../data/world.json';
 import ranks from '../data/ranks.json';
@@ -154,22 +155,29 @@ const WorldMap = () => {
 
   const countries = features.map((c, i) => {
     const country = rankings.find(r => r.ISO_3 === c.id);
-    return (
-      c.id !== 'ATA' && (
-        <path
-          d={path(c)}
-          id={`country-${c.id}`}
-          key={`country-${c.id}-${i}`}
-          onMouseEnter={() => country && setActiveCountry(country)}
-          stroke="#ffffff"
-          strokeWidth="0.2"
-          strokeLinejoin="bevel"
-          fill={
-            country ? gradients[ranking](scaleRanks(country[ranking])) : '#bbb'
-          }
-        />
-      )
+    const Path = () => (
+      <path
+        d={path(c)}
+        id={`country-${c.id}`}
+        key={`country-${c.id}-${i}`}
+        onMouseEnter={() => country && setActiveCountry(country)}
+        stroke="#ffffff"
+        strokeWidth="0.2"
+        strokeLinejoin="bevel"
+        fill={
+          country ? gradients[ranking](scaleRanks(country[ranking])) : '#bbb'
+        }
+      />
     );
+    const Country = () =>
+      country ? (
+        <Link to={`/${kebabCase(country.country)}`}>
+          <Path />
+        </Link>
+      ) : (
+        <Path />
+      );
+    return c.id !== 'ATA' && <Country />;
   });
 
   return (
