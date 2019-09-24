@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { kebabCase } from 'lodash';
 
-import { useIndexRankings } from '../data/useIndexRankings';
+import useIndexRankings from '../data/useIndexRankings';
 import flags from '../data/flags.json';
 
 const StyledRankingsTable = styled.table`

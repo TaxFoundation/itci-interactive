@@ -8,6 +8,7 @@ const Theme = {
   fontSize: '16px',
   fontWeight: '400',
   orange: 'hsl(14, 78%, 52%)',
+  lightOrange: 'hsl(16, 73%, 93%)',
   tfBlue: 'hsl(205, 100%, 50%)',
   tfBlueHighlight: 'hsl(205, 100%, 90%)',
   white: 'hsl(0, 0%, 100%)',
