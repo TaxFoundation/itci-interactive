@@ -197,7 +197,7 @@ const WorldMap = () => {
             ? `${activeCountry.country}'s Rankings`
             : 'Hover Over a Country'}
         </h2>
-        {activeCountry && (
+        {activeCountry ? (
           <RankingsTable>
             <thead>
               <tr>
@@ -216,6 +216,11 @@ const WorldMap = () => {
               ))}
             </tbody>
           </RankingsTable>
+        ) : (
+          <p style={{ textAlign: 'center', padding: '1rem' }}>
+            Hover over a country on the map to view its rankings here. Click the
+            country to view more detail.
+          </p>
         )}
       </StyledBox>
       <StyledBox style={{ gridArea: 'region' }}>
