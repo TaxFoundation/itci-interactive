@@ -19,17 +19,26 @@ import ranks from '../data/ranks.json';
 import useIndexRankings from '../data/useIndexRankings';
 
 const Container = styled.div`
-  display: grid;
-  grid-gap: 1rem;
-  grid-template: 1fr auto / minmax(600px, 2fr) 1fr;
-  grid-template-areas:
-    'map data'
-    'map region';
+  display: block;
   margin: 1rem 0;
+
+  @media screen and (min-width: 800px) {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template: 1fr auto / minmax(500px, 2fr) 1fr;
+    grid-template-areas:
+      'map data'
+      'map region';
+  }
 `;
 
 const StyledBox = styled.div`
   border: 1px solid ${props => props.theme.borderColor};
+  display: none;
+
+  @media screen and (min-width: 800px) {
+    display: block;
+  }
 
   h2 {
     background-color: ${props => props.theme.orange};
@@ -45,6 +54,7 @@ const RankingsTable = styled.table`
   border-collapse: separate;
   font-size: 0.9rem;
   margin: 0.8rem auto;
+  padding: 0.5rem;
 
   th,
   td {

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const StyledMain = styled.main`
   background-color: ${props => props.theme.white};
   color: ${props => props.theme.color};
+  padding: 0 1rem;
 `;
 
 const MainContents = styled.div`
