@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import axios from 'axios';
-import { geoPath, geoEqualEarth } from 'd3-geo';
+import { geoPath } from 'd3-geo';
 import { geoRobinson } from 'd3-geo-projection';
 import { scaleLinear } from 'd3-scale';
 import {
@@ -19,6 +19,7 @@ import { kebabCase } from 'lodash';
 import ranks from '../data/ranks.json';
 import useIndexRankings from '../data/useIndexRankings';
 import Divider from './Divider';
+import Loader from './Loader';
 
 const Container = styled.div`
   display: block;
@@ -144,6 +145,7 @@ const RankTypeSelectorRank = styled.div`
 
 const WorldMap = () => {
   const [mapData, setMapData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [region, setRegion] = useState('europe');
   const [ranking, setRanking] = useState('final_rank');
   const [activeCountry, setActiveCountry] = useState(null);
@@ -153,6 +155,7 @@ const WorldMap = () => {
       const result = await axios('/world.json');
       const { features } = feature(result.data, result.data.objects.countries);
       setMapData(features);
+      setIsLoading(false);
     };
     fetchData();
   }, []);
@@ -227,15 +230,21 @@ const WorldMap = () => {
   return (
     <>
       <Container>
-        <svg
-          style={{ border: '1px solid #bbb', gridArea: 'map' }}
-          height="100%"
-          width="100%"
-          preserveAspectRatio="xMidYMid slice"
-          viewBox="0 0 600 600"
-        >
-          <g>{countries}</g>
-        </svg>
+        {isLoading ? (
+          <Loader style={{ border: '1px solid #bbb', gridArea: 'map' }}>
+            Map is Loading...
+          </Loader>
+        ) : (
+          <svg
+            style={{ border: '1px solid #bbb', gridArea: 'map' }}
+            height="100%"
+            width="100%"
+            preserveAspectRatio="xMidYMid slice"
+            viewBox="0 0 600 600"
+          >
+            <g>{countries}</g>
+          </svg>
+        )}
         <StyledBox style={{ gridArea: 'data' }}>
           <h2>
             {activeCountry
