@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { kebabCase } from 'lodash';
 
 import useIndexRankings from '../data/useIndexRankings';
-import flags from '../data/flags.json';
 
 const StyledRankingsTable = styled.table`
   border: 1px solid ${props => props.theme.borderColor};
@@ -74,11 +73,7 @@ const Country = styled.td`
   font-weight: 700;
 
   a {
-    align-items: center;
     color: ${props => props.theme.color};
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-gap: 0.7rem;
     text-decoration: none;
   }
 `;
@@ -171,8 +166,7 @@ const RanksingsTable = () => {
           <tr key={`rankings-table-${country.ISO_3}`}>
             <Country>
               <Link to={`/${kebabCase(country.country)}`}>
-                <div aria-hidden="true">{flags[country.ISO_3]}</div>
-                <div>{country.country}</div>
+                {country.country}
               </Link>
             </Country>
             <Rank>{country.final_rank}</Rank>

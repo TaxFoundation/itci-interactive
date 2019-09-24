@@ -198,7 +198,7 @@ const WorldMap = () => {
         key={`country-${c.id}-${i}`}
         onMouseEnter={() => country && setActiveCountry(country)}
         stroke="#ffffff"
-        strokeWidth="0.2"
+        strokeWidth="1"
         strokeLinejoin="bevel"
         fill={
           country ? gradients[ranking](scaleRanks(country[ranking])) : '#bbb'

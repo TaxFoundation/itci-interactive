@@ -4,24 +4,18 @@ import styled from 'styled-components';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { kebabCase } from 'lodash';
 
-import flags from '../data/flags.json';
-
 const StyledCountry = styled.li`
   border-bottom: 1px solid ${props => props.theme.borderColor};
+  padding: 0.25rem;
 
   &:last-child {
     border: none;
   }
 
   a {
-    align-items: center;
     background-color: ${props =>
       props.active ? props.theme.tfBlueHighlight : props.theme.white};
     color: ${props => props.theme.color};
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-gap: 0.7rem;
-    padding: 0.25rem;
     text-decoration: none;
   }
 `;
@@ -34,8 +28,7 @@ const TopBottomHeading = styled.h3`
 const Country = ({ country, active }) => (
   <StyledCountry active={active}>
     <Link to={`/${kebabCase(country.country)}`}>
-      <div aria-hidden="true">{flags[country.ISO_3]}</div>
-      <div>{`#${country.final_rank} ${country.country}`}</div>
+      {`#${country.final_rank} ${country.country}`}
     </Link>
   </StyledCountry>
 );

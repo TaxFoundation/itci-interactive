@@ -5,7 +5,6 @@ import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
-import flags from '../data/flags.json';
 import CountryTable from '../components/CountryTable';
 import TopAndBottom from '../components/TopAndBottom';
 import Profiles from '../components/Profiles';
@@ -39,9 +38,7 @@ const country = ({ data }) => {
   return (
     <Layout>
       <SEO title={theCountry.country} />
-      <CountryHeading>{`${flags[theCountry.ISO_3]} ${
-        theCountry.country
-      }`}</CountryHeading>
+      <CountryHeading>{theCountry.country}</CountryHeading>
       <Summary>{theCountry.ranking}</Summary>
       <DataGrid>
         <CountryTable rankings={data.indexCsv} />
