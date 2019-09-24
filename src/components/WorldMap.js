@@ -196,7 +196,6 @@ const WorldMap = () => {
       <path
         d={path(c)}
         id={`country-${c.id}`}
-        key={`country-${c.id}-${i}`}
         onMouseEnter={() => country && setActiveCountry(country)}
         stroke="#ffffff"
         strokeWidth="1"
@@ -214,7 +213,7 @@ const WorldMap = () => {
       ) : (
         <Path />
       );
-    return c.id !== 'ATA' && <Country />;
+    return c.id !== 'ATA' && <Country key={`country-${c.id}-${i}`} />;
   });
 
   return (
@@ -268,6 +267,7 @@ const WorldMap = () => {
               role="button"
               active={k === region}
               onClick={() => setRegion(k)}
+              key={`region-selector-${k}`}
             >
               {regions[k].name}
             </RegionSelector>
@@ -281,6 +281,7 @@ const WorldMap = () => {
       <RankTypeSelector>
         {ranks.map(rank => (
           <RankTypeSelectorRank
+            key={`rank-selector-${rank.id}`}
             rank={rank.id}
             active={`${rank.id}_rank` === ranking}
             onClick={() => {
