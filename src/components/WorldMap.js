@@ -27,7 +27,7 @@ const Container = styled.div`
   @media screen and (min-width: 800px) {
     display: grid;
     grid-gap: 1rem;
-    grid-template: 1fr auto / minmax(500px, 2fr) 1fr;
+    grid-template: 330px auto / minmax(500px, 2fr) 1fr;
     grid-template-areas:
       'map data'
       'map region';

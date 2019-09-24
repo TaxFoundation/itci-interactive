@@ -5,6 +5,8 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import { kebabCase } from 'lodash';
 
 const StyledCountry = styled.li`
+  background-color: ${props =>
+    props.active ? props.theme.tfBlueHighlight : props.theme.white};
   border-bottom: 1px solid ${props => props.theme.borderColor};
   padding: 0.25rem;
 
@@ -13,9 +15,8 @@ const StyledCountry = styled.li`
   }
 
   a {
-    background-color: ${props =>
-      props.active ? props.theme.tfBlueHighlight : props.theme.white};
     color: ${props => props.theme.color};
+    display: block;
     text-decoration: none;
   }
 `;
