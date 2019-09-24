@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
 
 const StyledLayout = styled.div`
   display: grid;
-  grid-template: auto 1fr auto;
+  grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 `;
 
