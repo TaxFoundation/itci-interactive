@@ -6,11 +6,11 @@ import { geoRobinson } from 'd3-geo-projection';
 import { scaleLinear } from 'd3-scale';
 import {
   interpolateGnBu,
-  interpolateBuGn,
+  interpolatePuBuGn,
   interpolateYlGn,
   interpolateYlOrBr,
   interpolateYlOrRd,
-  interpolateRdPu,
+  interpolateYlGnBu,
 } from 'd3-scale-chromatic';
 import { feature } from 'topojson-client';
 import { kebabCase } from 'lodash';
@@ -18,6 +18,7 @@ import { kebabCase } from 'lodash';
 import world from '../data/world.json';
 import ranks from '../data/ranks.json';
 import useIndexRankings from '../data/useIndexRankings';
+import Divider from './Divider';
 
 const Container = styled.div`
   display: block;
@@ -106,6 +107,41 @@ const Disclaimer = styled.p`
   padding: 0.5rem 1rem;
 `;
 
+const RankTypeSelector = styled.div`
+  display: none;
+
+  @media screen and (min-width: 800px) {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+`;
+
+const RankTypeSelectorRank = styled.div`
+  background-color: ${props =>
+    props.active ? props.theme.lightOrange : props.theme.white};
+  border-bottom: 1px solid ${props => props.theme.borderColor};
+  border-left: 1px solid ${props => props.theme.borderColor};
+  border-top: 3px solid ${props => props.theme[props.rank]};
+  color: ${props => props.theme.color};
+  cursor: pointer;
+  flex: 1 0 auto;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.2s ease-in-out background-color;
+
+  &:last-child {
+    border-right: 1px solid ${props => props.theme.borderColor};
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: ${props => props.theme.lightOrange};
+    color: ${props => props.theme.color};
+  }
+`;
+
 const WorldMap = () => {
   const [region, setRegion] = useState('europe');
   const [ranking, setRanking] = useState('final_rank');
@@ -134,12 +170,12 @@ const WorldMap = () => {
     },
   };
   const gradients = {
-    final_rank: interpolateGnBu,
-    corporate_rank: interpolateBuGn,
+    final_rank: interpolateYlOrRd,
+    corporate_rank: interpolateYlOrBr,
     income_rank: interpolateYlGn,
-    consumptio0n_rank: interpolateYlOrBr,
-    property_rank: interpolateYlOrRd,
-    international_rank: interpolateRdPu,
+    consumption_rank: interpolatePuBuGn,
+    property_rank: interpolateGnBu,
+    international_rank: interpolateYlGnBu,
   };
 
   const rankings = useIndexRankings();
@@ -181,65 +217,81 @@ const WorldMap = () => {
   });
 
   return (
-    <Container>
-      <svg
-        style={{ border: '1px solid #bbb', gridArea: 'map' }}
-        height="100%"
-        width="100%"
-        preserveAspectRatio="xMidYMid slice"
-        viewBox="0 0 600 600"
-      >
-        <g>{countries}</g>
-      </svg>
-      <StyledBox style={{ gridArea: 'data' }}>
-        <h2>
-          {activeCountry
-            ? `${activeCountry.country}'s Rankings`
-            : 'Hover Over a Country'}
-        </h2>
-        {activeCountry ? (
-          <RankingsTable>
-            <thead>
-              <tr>
-                <th style={{ textAlign: 'left' }}>Tax Type</th>
-                <th>Rank</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ranks.map(rank => (
+    <>
+      <Container>
+        <svg
+          style={{ border: '1px solid #bbb', gridArea: 'map' }}
+          height="100%"
+          width="100%"
+          preserveAspectRatio="xMidYMid slice"
+          viewBox="0 0 600 600"
+        >
+          <g>{countries}</g>
+        </svg>
+        <StyledBox style={{ gridArea: 'data' }}>
+          <h2>
+            {activeCountry
+              ? `${activeCountry.country}'s Rankings`
+              : 'Hover Over a Country'}
+          </h2>
+          {activeCountry ? (
+            <RankingsTable>
+              <thead>
                 <tr>
-                  <RankName rank={rank.id}>{rank.name}</RankName>
-                  <td style={{ textAlign: 'right' }}>
-                    {`#${activeCountry[`${rank.id}_rank`]}`}
-                  </td>
+                  <th style={{ textAlign: 'left' }}>Tax Type</th>
+                  <th>Rank</th>
                 </tr>
-              ))}
-            </tbody>
-          </RankingsTable>
-        ) : (
-          <p style={{ textAlign: 'center', padding: '1rem' }}>
-            Hover over a country on the map to view its rankings here. Click the
-            country to view more detail.
-          </p>
-        )}
-      </StyledBox>
-      <StyledBox style={{ gridArea: 'region' }}>
-        <h2>Select a View</h2>
-        {Object.keys(regions).map(k => (
-          <RegionSelector
-            role="button"
-            active={k === region}
-            onClick={() => setRegion(k)}
+              </thead>
+              <tbody>
+                {ranks.map(rank => (
+                  <tr>
+                    <RankName rank={rank.id}>{rank.name}</RankName>
+                    <td style={{ textAlign: 'right' }}>
+                      {`#${activeCountry[`${rank.id}_rank`]}`}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </RankingsTable>
+          ) : (
+            <p style={{ textAlign: 'center', padding: '1rem' }}>
+              Hover over a country on the map to view its rankings here. Click
+              the country to view more detail.
+            </p>
+          )}
+        </StyledBox>
+        <StyledBox style={{ gridArea: 'region' }}>
+          <h2>Select a View</h2>
+          {Object.keys(regions).map(k => (
+            <RegionSelector
+              role="button"
+              active={k === region}
+              onClick={() => setRegion(k)}
+            >
+              {regions[k].name}
+            </RegionSelector>
+          ))}
+          <Disclaimer>
+            Note: for purposes of data consistency, this Index only compares
+            OECD countries.
+          </Disclaimer>
+        </StyledBox>
+      </Container>
+      <RankTypeSelector>
+        {ranks.map(rank => (
+          <RankTypeSelectorRank
+            rank={rank.id}
+            active={`${rank.id}_rank` === ranking}
+            onClick={() => {
+              setRanking(`${rank.id}_rank`);
+            }}
           >
-            {regions[k].name}
-          </RegionSelector>
+            {rank.name}
+          </RankTypeSelectorRank>
         ))}
-        <Disclaimer>
-          Note: for purposes of data consistency, this Index only compares OECD
-          countries.
-        </Disclaimer>
-      </StyledBox>
-    </Container>
+      </RankTypeSelector>
+      <Divider />
+    </>
   );
 };
 

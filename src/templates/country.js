@@ -9,6 +9,7 @@ import flags from '../data/flags.json';
 import CountryTable from '../components/CountryTable';
 import TopAndBottom from '../components/TopAndBottom';
 import Profiles from '../components/Profiles';
+import Divider from '../components/Divider';
 
 const CountryHeading = styled.h1`
   color: ${props => props.theme.orange};
@@ -30,14 +31,6 @@ const DataGrid = styled.div`
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-`;
-
-const Divider = styled.hr`
-  border: none;
-  height: 1px;
-  background: ${props => props.theme.borderColor};
-  margin: 1rem 0;
-  width: 100%;
 `;
 
 const country = ({ data }) => {
