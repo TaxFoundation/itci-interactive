@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import axios from 'axios';
@@ -16,7 +16,6 @@ import {
 import { feature } from 'topojson-client';
 import { kebabCase } from 'lodash';
 
-import world from '../data/world.json';
 import ranks from '../data/ranks.json';
 import useIndexRankings from '../data/useIndexRankings';
 import Divider from './Divider';
@@ -144,9 +143,19 @@ const RankTypeSelectorRank = styled.div`
 `;
 
 const WorldMap = () => {
+  const [mapData, setMapData] = useState([]);
   const [region, setRegion] = useState('europe');
   const [ranking, setRanking] = useState('final_rank');
   const [activeCountry, setActiveCountry] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios('/world.json');
+      const { features } = feature(result.data, result.data.objects.countries);
+      setMapData(features);
+    };
+    fetchData();
+  }, []);
 
   const regions = {
     europe: {
@@ -185,12 +194,11 @@ const WorldMap = () => {
     .scale(regions[region].scale)
     .translate(regions[region].translation);
   const path = geoPath(projection);
-  const { features } = feature(world, world.objects.countries);
   const scaleRanks = scaleLinear()
     .domain([0, rankings.length])
     .range([0, 1]);
 
-  const countries = features.map((c, i) => {
+  const countries = mapData.map((c, i) => {
     const country = rankings.find(r => r.ISO_3 === c.id);
     const Path = () => (
       <path
