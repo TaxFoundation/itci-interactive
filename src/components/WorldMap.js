@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import axios from 'axios';
 import { geoPath, geoEqualEarth } from 'd3-geo';
 import { geoRobinson } from 'd3-geo-projection';
 import { scaleLinear } from 'd3-scale';
