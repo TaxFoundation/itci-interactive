@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { geoPath, geoEqualEarth } from 'd3-geo';
+import axios from 'axios';
+import { geoPath } from 'd3-geo';
 import { geoRobinson } from 'd3-geo-projection';
 import { scaleLinear } from 'd3-scale';
 import {
@@ -15,10 +16,10 @@ import {
 import { feature } from 'topojson-client';
 import { kebabCase } from 'lodash';
 
-import world from '../data/world.json';
 import ranks from '../data/ranks.json';
 import useIndexRankings from '../data/useIndexRankings';
 import Divider from './Divider';
+import Loader from './Loader';
 
 const Container = styled.div`
   display: block;
@@ -143,9 +144,21 @@ const RankTypeSelectorRank = styled.div`
 `;
 
 const WorldMap = () => {
+  const [mapData, setMapData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [region, setRegion] = useState('europe');
   const [ranking, setRanking] = useState('final_rank');
   const [activeCountry, setActiveCountry] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios('/world.json');
+      const { features } = feature(result.data, result.data.objects.countries);
+      setMapData(features);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
 
   const regions = {
     europe: {
@@ -184,18 +197,16 @@ const WorldMap = () => {
     .scale(regions[region].scale)
     .translate(regions[region].translation);
   const path = geoPath(projection);
-  const { features } = feature(world, world.objects.countries);
   const scaleRanks = scaleLinear()
     .domain([0, rankings.length])
     .range([0, 1]);
 
-  const countries = features.map((c, i) => {
+  const countries = mapData.map((c, i) => {
     const country = rankings.find(r => r.ISO_3 === c.id);
     const Path = () => (
       <path
         d={path(c)}
         id={`country-${c.id}`}
-        key={`country-${c.id}-${i}`}
         onMouseEnter={() => country && setActiveCountry(country)}
         stroke="#ffffff"
         strokeWidth="1"
@@ -213,21 +224,27 @@ const WorldMap = () => {
       ) : (
         <Path />
       );
-    return c.id !== 'ATA' && <Country />;
+    return c.id !== 'ATA' && <Country key={`country-${c.id}-${i}`} />;
   });
 
   return (
     <>
       <Container>
-        <svg
-          style={{ border: '1px solid #bbb', gridArea: 'map' }}
-          height="100%"
-          width="100%"
-          preserveAspectRatio="xMidYMid slice"
-          viewBox="0 0 600 600"
-        >
-          <g>{countries}</g>
-        </svg>
+        {isLoading ? (
+          <Loader style={{ border: '1px solid #bbb', gridArea: 'map' }}>
+            Map is Loading...
+          </Loader>
+        ) : (
+          <svg
+            style={{ border: '1px solid #bbb', gridArea: 'map' }}
+            height="100%"
+            width="100%"
+            preserveAspectRatio="xMidYMid slice"
+            viewBox="0 0 600 600"
+          >
+            <g>{countries}</g>
+          </svg>
+        )}
         <StyledBox style={{ gridArea: 'data' }}>
           <h2>
             {activeCountry
@@ -267,6 +284,7 @@ const WorldMap = () => {
               role="button"
               active={k === region}
               onClick={() => setRegion(k)}
+              key={`region-selector-${k}`}
             >
               {regions[k].name}
             </RegionSelector>
@@ -280,6 +298,7 @@ const WorldMap = () => {
       <RankTypeSelector>
         {ranks.map(rank => (
           <RankTypeSelectorRank
+            key={`rank-selector-${rank.id}`}
             rank={rank.id}
             active={`${rank.id}_rank` === ranking}
             onClick={() => {
