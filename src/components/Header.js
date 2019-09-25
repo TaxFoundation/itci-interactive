@@ -9,6 +9,13 @@ import Theme from '../Theme';
 const StyledHeader = styled.header`
   background-color: ${props => props.theme.orange};
   color: ${props => props.theme.white};
+  display: grid;
+  grid-gap: 1rem;
+  grid-template: repeat(2, auto) / repeat(2, minmax(auto, 480px));
+  grid-template-areas:
+    'title sharing'
+    'title nav';
+  justify-content: center;
   padding: 1rem;
 
   h1,
@@ -34,15 +41,21 @@ const StyledHeader = styled.header`
 `;
 
 const HeaderContents = styled.div`
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(2, minmax(auto, 480px));
-  justify-content: center;
+  grid-area: title;
 `;
 
-const HeaderNavigation = styled.div`
+const HeaderSharing = styled.div`
+  align-items: end;
   display: grid;
-  grid-template: repeat(2, 1fr) / auto;
+  grid-area: sharing;
+  justify-items: end;
+`;
+
+const HeaderNavigation = styled.nav`
+  align-items: end;
+  display: grid;
+  grid-area: nav;
+  justify-items: end;
 `;
 
 const Header = ({ year, siteTitle }) => (
@@ -62,11 +75,9 @@ const Header = ({ year, siteTitle }) => (
           </Link>
         </h1>
       </div>
-      <HeaderNavigation>
-        <div>stuff</div>
-        <div>things</div>
-      </HeaderNavigation>
     </HeaderContents>
+    <HeaderSharing>Subscribe</HeaderSharing>
+    <HeaderNavigation>Download Full Study</HeaderNavigation>
   </StyledHeader>
 );
 
