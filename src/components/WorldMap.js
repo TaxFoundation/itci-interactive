@@ -198,7 +198,7 @@ const WorldMap = () => {
     .translate(regions[region].translation);
   const path = geoPath(projection);
   const scaleRanks = scaleLinear()
-    .domain([0, rankings.length])
+    .domain([1, rankings.length])
     .range([0, 1]);
 
   const countries = mapData.map((c, i) => {
@@ -227,6 +227,52 @@ const WorldMap = () => {
     return c.id !== 'ATA' && <Country key={`country-${c.id}-${i}`} />;
   });
 
+  const Legend = ({ steps, height, width }) => {
+    const scaleLegend = scaleLinear()
+      .domain([0, steps - 1])
+      .range([0, 1]);
+
+    const rects = [...Array(steps).keys()].map(i => (
+      <rect
+        x={100 + (width / steps) * i}
+        height={height}
+        width={width / steps}
+        fill={scaleLegend(i)}
+      ></rect>
+    ));
+    return (
+      <g>
+        <rect
+          fill="#fff"
+          x="0"
+          y={600 - height}
+          width="100"
+          height={height}
+        ></rect>
+        <text x="8" y={600 - height / 3} width="100" height={height}>
+          Higher Rank
+        </text>
+        {rects}
+        <rect
+          fill="#fff"
+          x={width}
+          y={600 - height}
+          width="100"
+          height={height}
+        ></rect>
+        <text
+          x={600 - 8}
+          y={600 - height / 3}
+          width="100"
+          height={height}
+          textAnchor="end"
+        >
+          Lower Rank
+        </text>
+      </g>
+    );
+  };
+
   return (
     <>
       <Container>
@@ -243,6 +289,7 @@ const WorldMap = () => {
             viewBox="0 0 600 600"
           >
             <g>{countries}</g>
+            <Legend steps={10} height={30} width={500}></Legend>
           </svg>
         )}
         <StyledBox style={{ gridArea: 'data' }}>
