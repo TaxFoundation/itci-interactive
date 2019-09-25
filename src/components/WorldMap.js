@@ -17,6 +17,7 @@ import { feature } from 'topojson-client';
 import { kebabCase } from 'lodash';
 
 import ranks from '../data/ranks.json';
+import regions from '../data/regions.json';
 import useIndexRankings from '../data/useIndexRankings';
 import Divider from './Divider';
 import Loader from './Loader';
@@ -62,28 +63,8 @@ const WorldMap = () => {
     fetchData();
   }, []);
 
-  const regions = {
-    europe: {
-      name: 'Europe',
-      scale: 600,
-      translation: [600 / 2 - 100, 600 / 2 + 600],
-    },
-    northAmerica: {
-      name: 'North America',
-      scale: 350,
-      translation: [600 / 2 + 500, 600 / 2 + 300],
-    },
-    southAmerica: {
-      name: 'South America',
-      scale: 350,
-      translation: [600 / 2 + 350, 600 / 2 - 100],
-    },
-    world: {
-      name: 'World',
-      scale: 110,
-      translation: [600 / 2 - 30, 600 / 2],
-    },
-  };
+  const mapDimension = 600;
+
   const gradients = {
     final_rank: interpolateYlOrRd,
     corporate_rank: interpolateYlOrBr,
@@ -97,7 +78,10 @@ const WorldMap = () => {
 
   const projection = geoRobinson()
     .scale(regions[region].scale)
-    .translate(regions[region].translation);
+    .translate([
+      mapDimension / 2 + regions[region].dx,
+      mapDimension / 2 + regions[region].dy,
+    ]);
   const path = geoPath(projection);
   const scaleRanks = scaleLinear()
     .domain([1, rankings.length])
@@ -153,7 +137,7 @@ const WorldMap = () => {
               height="100%"
               width="100%"
               preserveAspectRatio="xMidYMid slice"
-              viewBox="0 0 600 600"
+              viewBox={`0 0 ${mapDimension} ${mapDimension}`}
             >
               <g>{countries}</g>
             </svg>

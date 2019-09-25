@@ -1,0 +1,26 @@
+{
+  "europe": {
+    "name": "Europe",
+    "scale": 600,
+    "dx": -100,
+    "dy": 600
+  },
+  "northAmerica": {
+    "name": "North America",
+    "scale": 350,
+    "dx": 500,
+    "dy": 300
+  },
+  "southAmerica": {
+    "name": "South America",
+    "scale": 350,
+    "dx": 350,
+    "dy": -100
+  },
+  "world": {
+    "name": "World",
+    "scale": 110,
+    "dx": -30,
+    "dy": 0
+  }
+}
