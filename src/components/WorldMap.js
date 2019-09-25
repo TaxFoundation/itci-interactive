@@ -25,7 +25,7 @@ import MapLegend from './world-map/MapLegend';
 import RankingsTable from './world-map/RankingsTable';
 import RegionSelector from './world-map/RegionSelector';
 
-const Container = styled.div`
+const WorldMapSectionContainer = styled.section`
   display: block;
   margin: 1rem 0 0;
 
@@ -37,6 +37,12 @@ const Container = styled.div`
       'map data'
       'map region';
   }
+`;
+
+const MapContainer = styled.div`
+  border: 1px solid ${props => props.theme.borderColor};
+  grid-area: map;
+  position: relative;
 `;
 
 const WorldMap = () => {
@@ -134,19 +140,15 @@ const WorldMap = () => {
         ranks={ranks}
         setRanking={setRanking}
       />
-      <Container>
+      <WorldMapSectionContainer>
         {isLoading ? (
-          <Loader style={{ border: '1px solid #bbb', gridArea: 'map' }}>
-            Map is Loading...
-          </Loader>
+          <MapContainer>
+            <Loader style={{ border: '1px solid #bbb', gridArea: 'map' }}>
+              Map is Loading...
+            </Loader>
+          </MapContainer>
         ) : (
-          <div
-            style={{
-              border: '1px solid #bbb',
-              gridArea: 'map',
-              position: 'relative',
-            }}
-          >
+          <MapContainer>
             <svg
               height="100%"
               width="100%"
@@ -160,7 +162,7 @@ const WorldMap = () => {
               interpolator={gradients[ranking]}
               steps={20}
             ></MapLegend>
-          </div>
+          </MapContainer>
         )}
         <RankingsTable activeCountry={activeCountry} ranks={ranks} />
         <RegionSelector
@@ -169,7 +171,7 @@ const WorldMap = () => {
           region={region}
           setRegion={setRegion}
         />
-      </Container>
+      </WorldMapSectionContainer>
       <Divider />
     </>
   );

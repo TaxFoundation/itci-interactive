@@ -33,6 +33,7 @@ const StyledLoadingText = styled.div`
   animation: 5s ${Colors} ease-in-out infinite;
   display: grid;
   font-size: calc(0.8rem + 2vw);
+  height: 100%;
   justify-content: center;
   text-align: center;
 `;
