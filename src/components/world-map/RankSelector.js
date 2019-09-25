@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const RankTypeSelector = styled.div`
   display: none;
+  font-size: calc(0.45rem + 0.45vw);
 
   @media screen and (min-width: 800px) {
     display: flex;

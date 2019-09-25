@@ -30,10 +30,10 @@ const WorldMapSectionContainer = styled.section`
   display: block;
   margin: 1rem 0 0;
 
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: 850px) {
     display: grid;
     grid-gap: 1rem;
-    grid-template: 330px auto / minmax(600px, 2fr) 1fr;
+    grid-template: 360px auto / minmax(600px, 2fr) 1fr;
     grid-template-areas:
       'map data'
       'map region';
