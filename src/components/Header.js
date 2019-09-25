@@ -9,14 +9,17 @@ import Theme from '../Theme';
 const StyledHeader = styled.header`
   background-color: ${props => props.theme.orange};
   color: ${props => props.theme.white};
-  display: grid;
-  grid-gap: 1rem;
-  grid-template: repeat(2, auto) / repeat(2, minmax(auto, 480px));
-  grid-template-areas:
-    'title sharing'
-    'title nav';
-  justify-content: center;
   padding: 1rem;
+
+  @media screen and (min-width: 700px) {
+    display: grid;
+    grid-gap: 1rem;
+    justify-content: center;
+    grid-template: repeat(2, auto) / repeat(2, minmax(auto, 480px));
+    grid-template-areas:
+      'title sharing'
+      'title nav';
+  }
 
   h1,
   a,

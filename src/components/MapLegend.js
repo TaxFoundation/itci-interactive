@@ -26,7 +26,9 @@ const MapLegend = ({ interpolator, steps, style }) => {
     <StyledRect bg={interpolator(scaleLegend(i))}></StyledRect>
   );
 
-  const rects = Array.from({ length: steps }, (v, i) => <Rect i={i} />);
+  const rects = Array.from({ length: steps }, (v, i) => (
+    <Rect key={`legend-step-${i}`} i={i} />
+  ));
 
   return (
     <StyledLegend steps={steps} style={style}>
