@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { scaleLinear } from 'd3-scale';
 
@@ -37,6 +38,12 @@ const MapLegend = ({ interpolator, steps, style }) => {
       <StyledLabels>Lower Rank</StyledLabels>
     </StyledLegend>
   );
+};
+
+MapLegend.propTypes = {
+  interpolator: PropTypes.func.isRequired,
+  steps: PropTypes.number.isRequired,
+  style: PropTypes.object,
 };
 
 export default MapLegend;
