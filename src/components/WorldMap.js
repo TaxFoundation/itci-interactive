@@ -20,6 +20,7 @@ import ranks from '../data/ranks.json';
 import useIndexRankings from '../data/useIndexRankings';
 import Divider from './Divider';
 import Loader from './Loader';
+import MapLegend from './MapLegend';
 
 const Container = styled.div`
   display: block;
@@ -227,52 +228,6 @@ const WorldMap = () => {
     return c.id !== 'ATA' && <Country key={`country-${c.id}-${i}`} />;
   });
 
-  const Legend = ({ steps, height, width }) => {
-    const scaleLegend = scaleLinear()
-      .domain([0, steps - 1])
-      .range([0, 1]);
-
-    const rects = [...Array(steps).keys()].map(i => (
-      <rect
-        x={100 + (width / steps) * i}
-        height={height}
-        width={width / steps}
-        fill={scaleLegend(i)}
-      ></rect>
-    ));
-    return (
-      <g>
-        <rect
-          fill="#fff"
-          x="0"
-          y={600 - height}
-          width="100"
-          height={height}
-        ></rect>
-        <text x="8" y={600 - height / 3} width="100" height={height}>
-          Higher Rank
-        </text>
-        {rects}
-        <rect
-          fill="#fff"
-          x={width}
-          y={600 - height}
-          width="100"
-          height={height}
-        ></rect>
-        <text
-          x={600 - 8}
-          y={600 - height / 3}
-          width="100"
-          height={height}
-          textAnchor="end"
-        >
-          Lower Rank
-        </text>
-      </g>
-    );
-  };
-
   return (
     <>
       <Container>
@@ -289,7 +244,13 @@ const WorldMap = () => {
             viewBox="0 0 600 600"
           >
             <g>{countries}</g>
-            <Legend steps={10} height={30} width={500}></Legend>
+            <MapLegend
+              interpolator={gradients[ranking]}
+              mapHeight={600}
+              steps={20}
+              height={30}
+              width={500}
+            ></MapLegend>
           </svg>
         )}
         <StyledBox style={{ gridArea: 'data' }}>
