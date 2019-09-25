@@ -1,10 +1,11 @@
-import { Link } from 'gatsby';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'gatsby';
 
-import Logo from './Logo';
 import Theme from '../Theme';
+import Logo from './Logo';
+import MobileMenu from './MobileMenu';
 
 const StyledHeader = styled.header`
   background-color: ${props => props.theme.orange};
@@ -21,20 +22,12 @@ const StyledHeader = styled.header`
       'title nav';
   }
 
-  h1,
-  a,
-  a:active,
-  a:hover,
-  a:focus,
-  a:visited {
-    color: ${props => props.theme.white};
-  }
-
   a {
     text-decoration: none;
   }
 
   h1 {
+    color: ${props => props.theme.white};
     font-family: ${props => props.theme.fontFamilies.oswald};
     font-size: calc(1rem + 2vw);
     font-weight: 400;
@@ -59,30 +52,40 @@ const HeaderNavigation = styled.nav`
   display: grid;
   grid-area: nav;
   justify-items: end;
+  text-transform: uppercase;
 `;
 
-const Header = ({ year, siteTitle }) => (
-  <StyledHeader>
-    <HeaderContents>
-      <div>
-        <a
-          href="https://taxfoundation.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Logo fill={Theme.white}></Logo>
-        </a>
-        <h1>
-          <Link to="/">
-            <span style={{ fontWeight: 300 }}>{year}</span> {siteTitle}
-          </Link>
-        </h1>
-      </div>
-    </HeaderContents>
-    <HeaderSharing>Subscribe</HeaderSharing>
-    <HeaderNavigation>Download Full Study</HeaderNavigation>
-  </StyledHeader>
-);
+const Header = ({ year, siteTitle }) => {
+  const [mobileMenu, setMobileMenu] = useState(false);
+  return (
+    <StyledHeader>
+      <HeaderContents>
+        <div>
+          <a
+            href="https://taxfoundation.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Logo fill={Theme.white}></Logo>
+          </a>
+          <h1>
+            <Link to="/">
+              <span style={{ fontWeight: 300 }}>{year}</span> {siteTitle}
+            </Link>
+          </h1>
+        </div>
+      </HeaderContents>
+      <HeaderSharing>Subscribe</HeaderSharing>
+      <HeaderNavigation>
+        <div onClick={() => setMobileMenu(true)}>Menu</div>
+        <MobileMenu
+          active={mobileMenu}
+          close={() => setMobileMenu(false)}
+        ></MobileMenu>
+      </HeaderNavigation>
+    </StyledHeader>
+  );
+};
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
