@@ -5,9 +5,9 @@ import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
-import CountryTable from '../components/CountryTable';
-import TopAndBottom from '../components/TopAndBottom';
-import Profiles from '../components/Profiles';
+import CountryTable from '../components/country/CountryTable';
+import TopAndBottom from '../components/country/TopAndBottom';
+import Profiles from '../components/country/Profiles';
 import Divider from '../components/Divider';
 
 const CountryHeading = styled.h1`

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { round } from 'lodash';
 
-import ranks from '../data/ranks.json';
+import ranks from '../../data/ranks.json';
 
 const StyledRankingsTable = styled.table`
   border: 1px solid ${props => props.theme.borderColor};
