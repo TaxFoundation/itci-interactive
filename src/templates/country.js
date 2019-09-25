@@ -20,7 +20,7 @@ const CountryHeading = styled.h1`
 `;
 
 const Summary = styled.p`
-  background-color: ${props => props.theme.tfBlueHighlight};
+  background-color: ${props => props.theme.lightOrange};
   margin: 1rem 0;
   padding: 1rem;
   text-align: center;
