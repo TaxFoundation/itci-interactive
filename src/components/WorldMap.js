@@ -29,7 +29,7 @@ const Container = styled.div`
   @media screen and (min-width: 800px) {
     display: grid;
     grid-gap: 1rem;
-    grid-template: 330px auto / minmax(500px, 2fr) 1fr;
+    grid-template: 330px auto / minmax(600px, 2fr) 1fr;
     grid-template-areas:
       'map data'
       'map region';
@@ -236,22 +236,27 @@ const WorldMap = () => {
             Map is Loading...
           </Loader>
         ) : (
-          <svg
-            style={{ border: '1px solid #bbb', gridArea: 'map' }}
-            height="100%"
-            width="100%"
-            preserveAspectRatio="xMidYMid slice"
-            viewBox="0 0 600 600"
+          <div
+            style={{
+              border: '1px solid #bbb',
+              gridArea: 'map',
+              position: 'relative',
+            }}
           >
-            <g>{countries}</g>
+            <svg
+              height="100%"
+              width="100%"
+              preserveAspectRatio="xMidYMid slice"
+              viewBox="0 0 600 600"
+            >
+              <g>{countries}</g>
+            </svg>
             <MapLegend
+              style={{ position: 'absolute', bottom: '0' }}
               interpolator={gradients[ranking]}
-              mapHeight={600}
               steps={20}
-              height={30}
-              width={500}
             ></MapLegend>
-          </svg>
+          </div>
         )}
         <StyledBox style={{ gridArea: 'data' }}>
           <h2>

@@ -1,56 +1,39 @@
 import React from 'react';
+import styled from 'styled-components';
 import { scaleLinear } from 'd3-scale';
 
-const MapLegend = ({ mapHeight, interpolator, steps, height, width }) => {
+const StyledLegend = styled.div`
+  display: grid;
+  grid-template: auto / auto repeat(${props => props.steps}, 1fr) auto;
+  width: 100%;
+`;
+
+const StyledLabels = styled.div`
+  background-color: ${props => props.theme.white};
+  padding: 0.5rem;
+`;
+
+const StyledRect = styled.div`
+  background-color: ${props => props.bg};
+`;
+
+const MapLegend = ({ interpolator, steps, style }) => {
   const scaleLegend = scaleLinear()
     .domain([0, steps - 1])
     .range([0, 1]);
 
-  const Rect = ({ i }) => {
-    console.log(width, steps, i);
-    return (
-      <rect
-        x={100 + (width / steps) * i}
-        y={mapHeight - height}
-        height={height}
-        width={width / steps}
-        fill={interpolator(scaleLegend(i))}
-      ></rect>
-    );
-  };
+  const Rect = ({ i }) => (
+    <StyledRect bg={interpolator(scaleLegend(i))}></StyledRect>
+  );
 
   const rects = Array.from({ length: steps }, (v, i) => <Rect i={i} />);
 
   return (
-    <g>
-      <rect
-        fill="#fff"
-        x="0"
-        y={mapHeight - height}
-        width="100"
-        height={height}
-      ></rect>
-      <text x="8" y={mapHeight - height / 3} width="100" height={height}>
-        Higher Rank
-      </text>
+    <StyledLegend steps={steps} style={style}>
+      <StyledLabels>Higher Rank</StyledLabels>
       {rects}
-      <rect
-        fill="#fff"
-        x={width}
-        y={mapHeight - height}
-        width="100"
-        height={height}
-      ></rect>
-      <text
-        x={mapHeight - 8}
-        y={mapHeight - height / 3}
-        width="100"
-        height={height}
-        textAnchor="end"
-      >
-        Lower Rank
-      </text>
-    </g>
+      <StyledLabels>Lower Rank</StyledLabels>
+    </StyledLegend>
   );
 };
 
