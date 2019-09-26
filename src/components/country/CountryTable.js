@@ -56,7 +56,7 @@ const CountryTable = ({ rankings }) => (
     <caption>{`${rankings.country}'s Rankings`}</caption>
     <thead>
       <tr>
-        <TableHeading>Country</TableHeading>
+        <TableHeading>Category</TableHeading>
         <TableHeading>Rank</TableHeading>
         <TableHeading>Score</TableHeading>
       </tr>
