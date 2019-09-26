@@ -54,6 +54,9 @@ const StyledPath = styled.path`
   stroke-width: ${props => (props.active ? 2 : 1)};
 `;
 
+const ConditionalLink = ({ url, children }) =>
+  url ? <Link to={url}>{children}</Link> : children;
+
 const WorldMap = () => {
   const [mapData, setMapData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -97,26 +100,27 @@ const WorldMap = () => {
 
   const countries = mapData.map((c, i) => {
     const country = rankings.find(r => r.ISO_3 === c.id);
-    const Path = () => (
-      <StyledPath
-        d={path(c)}
-        id={`country-${c.id}`}
-        onMouseEnter={() => country && setActiveCountry(country)}
-        active={
-          country && activeCountry && country.ISO_3 === activeCountry.ISO_3
-        }
-        bg={country ? gradients[ranking](scaleRanks(country[ranking])) : '#bbb'}
-      />
+    const url = country ? `/${kebabCase(country.country)}` : null;
+
+    return (
+      c.id !== 'ATA' && (
+        <ConditionalLink url={url}>
+          <StyledPath
+            d={path(c)}
+            id={`country-${c.id}`}
+            onMouseEnter={() => country && setActiveCountry(country)}
+            active={
+              country && activeCountry && country.ISO_3 === activeCountry.ISO_3
+            }
+            bg={
+              country
+                ? gradients[ranking](scaleRanks(country[ranking]))
+                : '#bbb'
+            }
+          />
+        </ConditionalLink>
+      )
     );
-    const Country = () =>
-      country ? (
-        <Link to={`/${kebabCase(country.country)}`}>
-          <Path />
-        </Link>
-      ) : (
-        <Path />
-      );
-    return c.id !== 'ATA' && <Country key={`country-${c.id}-${i}`} />;
   });
 
   return (
