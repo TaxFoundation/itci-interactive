@@ -28,12 +28,14 @@ import RankingsTable from './world-map/RankingsTable';
 import RegionSelector from './world-map/RegionSelector';
 
 const WorldMapSectionContainer = styled.section`
-  display: block;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-areas:
+    'map'
+    'region';
   margin: 1rem 0 0;
 
   @media screen and (min-width: 850px) {
-    display: grid;
-    grid-gap: 1rem;
     grid-template: 360px auto / minmax(600px, 2fr) 1fr;
     grid-template-areas:
       'map data'
@@ -52,7 +54,7 @@ const StyledPath = styled.path`
   stroke: ${props => props.theme.white};
   transition: fill 0.2s ease-in-out, stroke-width 0.2s linear;
   stroke-linejoin: bevel;
-  stroke-width: ${props => (props.active ? 2.5 : 1)};
+  stroke-width: ${props => (props.active ? 2 : 1)};
 `;
 
 const ConditionalLink = ({ url, children }) =>
@@ -160,6 +162,13 @@ const WorldMap = () => {
               preserveAspectRatio="xMidYMid slice"
               viewBox={`0 0 ${mapDimension} ${mapDimension}`}
             >
+              <rect
+                x="0"
+                y="0"
+                width={mapDimension}
+                height={mapDimension}
+                fill="hsl(205, 100%, 90%)"
+              ></rect>
               <g>{countries}</g>
             </svg>
             <MapLegend

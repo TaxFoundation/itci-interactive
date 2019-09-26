@@ -17,6 +17,12 @@
     "dx": 350,
     "dy": -100
   },
+  "asiaAndOceania": {
+    "name": "Asia and Oceania",
+    "scale": 220,
+    "dx": -470,
+    "dy": 0
+  },
   "world": {
     "name": "World",
     "scale": 110,
