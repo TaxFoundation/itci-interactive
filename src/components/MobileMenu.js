@@ -19,7 +19,7 @@ const StyledMobileMenu = styled.div`
   z-index: ${props => (props.active ? 10 : -1)};
 
   @media screen and (min-width: 700px) {
-    display: none;
+    /* display: none; */
   }
 `;
 
@@ -27,10 +27,11 @@ const StyledLink = styled(Link)`
   color: ${props => props.theme.color};
 `;
 
-const MobileMenu = ({ active }) => {
+const MobileMenu = ({ active, close }) => {
   const countries = useIndexRankings();
   return (
     <StyledMobileMenu active={active}>
+      <div onClick={close}>Close Menu</div>
       <ul>
         {countries.map(country => (
           <li>
@@ -46,6 +47,7 @@ const MobileMenu = ({ active }) => {
 
 MobileMenu.propTypes = {
   active: PropTypes.bool.isRequired,
+  close: PropTypes.func.isRequired,
 };
 
 export default MobileMenu;
