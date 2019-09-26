@@ -48,6 +48,10 @@ const StyledHeader = styled.header`
     font-weight: 400;
     line-height: 1.1;
     text-transform: uppercase;
+
+    @media screen and (min-width: 960px) {
+      font-size: 2.4rem;
+    }
   }
 `;
 
