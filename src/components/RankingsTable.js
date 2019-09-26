@@ -71,7 +71,7 @@ const RankHeading = styled.th`
   }
 
   &:hover {
-    background-color: ${props => props.theme.tfBlueHighlight};
+    background-color: ${props => props.theme.lightOrange};
   }
 `;
 

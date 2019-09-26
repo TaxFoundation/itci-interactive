@@ -50,13 +50,19 @@ const MapContainer = styled.div`
 const StyledPath = styled.path`
   fill: ${props => props.bg};
   stroke: ${props => props.theme.white};
-  transition: fill 0.2s ease-in-out, stroke-width 0.2s ease-in-out;
+  transition: fill 0.2s ease-in-out, stroke-width 0.2s linear;
   stroke-linejoin: bevel;
-  stroke-width: ${props => (props.active ? 2 : 1)};
+  stroke-width: ${props => (props.active ? 2.5 : 1)};
 `;
 
 const ConditionalLink = ({ url, children }) =>
-  url ? <Link to={url}>{children}</Link> : children;
+  url ? (
+    <Link to={url} tabindex="-1">
+      {children}
+    </Link>
+  ) : (
+    children
+  );
 
 ConditionalLink.propTypes = {
   url: PropTypes.string,
