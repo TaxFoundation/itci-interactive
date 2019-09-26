@@ -92,11 +92,12 @@ const Footer = ({ year }) => (
           >
             Tax Foundation
           </a>{' '}
-          is the nation’s leading independent tax policy research organization.
-          Since 1937, our principled research, insightful analysis, and engaged
-          experts have informed smarter tax policy at the federal, state, and
-          local levels. We improve lives through tax policy research and
-          education that leads to greater economic growth and opportunity.
+          is the nation’s leading independent tax policy nonprofit. Since 1937,
+          our principled research, insightful analysis, and engaged experts have
+          informed smarter tax policyat the federal, state, and global levels.
+          For over 80 years, our goal has remained the same: to improve lives
+          through tax policies that lead to greater economic growth and
+          opportunity.
         </p>
       </div>
     </FooterContents>
