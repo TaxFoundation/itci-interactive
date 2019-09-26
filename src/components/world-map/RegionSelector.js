@@ -50,7 +50,7 @@ const RegionSelector = ({ area, regions, region, setRegion }) => (
 
 RegionSelector.propTypes = {
   area: PropTypes.string,
-  regions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  regions: PropTypes.object.isRequired,
   region: PropTypes.string.isRequired,
   setRegion: PropTypes.func.isRequired,
 };

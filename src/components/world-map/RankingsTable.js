@@ -52,7 +52,7 @@ const RankingsTable = ({ activeCountry, ranks }) => (
         </thead>
         <tbody>
           {ranks.map(rank => (
-            <tr>
+            <tr key={`rankings-table-${rank.id}`}>
               <RankName rank={rank.id}>{rank.name}</RankName>
               <td style={{ textAlign: 'right' }}>
                 {`#${activeCountry[`${rank.id}_rank`]}`}

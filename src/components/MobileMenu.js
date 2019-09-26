@@ -49,7 +49,10 @@ const MobileMenu = ({ active, close }) => {
       <ul>
         {countries.map(country => (
           <li>
-            <StyledLink to={`/${kebabCase(country.country)}`}>
+            <StyledLink
+              key={`menu-link-${country.ISO_3}`}
+              to={`/${kebabCase(country.country)}`}
+            >
               {country.country}
             </StyledLink>
           </li>
