@@ -24,7 +24,7 @@ const FooterContents = styled.div`
   }
 
   a {
-    color: ${props => props.theme.tfBlue};
+    color: ${props => props.theme.orange};
     text-decoration: none;
   }
 `;
@@ -70,7 +70,7 @@ const Footer = ({ year }) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Logo fill={Theme.tfBlue}></Logo>
+          <Logo fill={Theme.orange}></Logo>
         </a>
         <p style={{ margin: '0.2rem 0 0 2.4rem' }}>
           1325 G St NW
