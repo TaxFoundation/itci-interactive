@@ -104,7 +104,10 @@ const WorldMap = () => {
 
     return (
       c.id !== 'ATA' && (
-        <ConditionalLink url={url}>
+        <ConditionalLink
+          key={`country-${kebabCase(c.properties.name)}`}
+          url={url}
+        >
           <StyledPath
             d={path(c)}
             id={`country-${c.id}`}
