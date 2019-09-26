@@ -13,25 +13,39 @@ const StyledMobileMenu = styled.div`
   min-height: 100vh;
   position: fixed;
   right: 0;
+  overflow-y: scroll;
+  padding: 1rem;
   transform: translateX(${props => (props.active ? 0 : '100%')});
+  transition: transform 0.2s ease-in-out;
   top: 0;
   width: 100vw;
   z-index: ${props => (props.active ? 10 : -1)};
 
   @media screen and (min-width: 700px) {
-    /* display: none; */
+    display: none;
   }
 `;
 
 const StyledLink = styled(Link)`
   color: ${props => props.theme.color};
+  text-decoration: none;
+`;
+
+const StyledCloseButton = styled.button`
+  background-color: ${props => props.theme.white};
+  border: 1px solid ${props => props.theme.color};
+  border-radius: 4px;
+  color: ${props => props.theme.color};
+  float: right;
+  font-size: 1rem;
+  padding: 0.5rem;
 `;
 
 const MobileMenu = ({ active, close }) => {
   const countries = useIndexRankings();
   return (
     <StyledMobileMenu active={active}>
-      <div onClick={close}>Close Menu</div>
+      <StyledCloseButton onClick={close}>Close Menu</StyledCloseButton>
       <ul>
         {countries.map(country => (
           <li>
