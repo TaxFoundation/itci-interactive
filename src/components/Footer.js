@@ -12,10 +12,16 @@ const StyledFooter = styled.footer`
 
 const FooterContents = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(auto, 480px));
+  grid-gap: 1rem;
+  grid-template-columns: 1fr;
   justify-content: center;
   margin: 0 auto;
+  max-width: 960px;
   padding: 2rem 1rem;
+
+  @media screen and (min-width: 700px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   a {
     color: ${props => props.theme.tfBlue};
