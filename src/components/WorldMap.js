@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import axios from 'axios';
@@ -56,6 +57,11 @@ const StyledPath = styled.path`
 
 const ConditionalLink = ({ url, children }) =>
   url ? <Link to={url}>{children}</Link> : children;
+
+ConditionalLink.propTypes = {
+  url: PropTypes.string,
+  children: PropTypes.element.isRequired,
+};
 
 const WorldMap = () => {
   const [mapData, setMapData] = useState([]);
