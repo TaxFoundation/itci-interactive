@@ -15,11 +15,11 @@ const StyledMobileMenu = styled.div`
   right: 0;
   overflow-y: scroll;
   padding: 1rem;
-  transform: translateX(${props => (props.active ? 0 : '100%')});
+  transform: ${props => (props.active ? 'none' : `translateX(100%)`)};
   transition: transform 0.2s ease-in-out;
   top: 0;
   width: 100vw;
-  z-index: ${props => (props.active ? 10 : -1)};
+  z-index: 10;
 
   @media screen and (min-width: 700px) {
     display: none;
