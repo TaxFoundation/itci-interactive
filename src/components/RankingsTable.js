@@ -14,7 +14,9 @@ const StyledRankingsTable = styled.table`
   td {
     font-size: calc(0.5rem + 0.4vw);
     line-height: 1;
+    overflow: hidden;
     padding: 0.5rem;
+    text-overflow: ellipsis;
     vertical-align: middle;
   }
 `;
@@ -31,35 +33,40 @@ const RankHeading = styled.th`
   transition: 0.2s ease-in-out background-color;
 
   div {
-    padding-right: 0.5rem;
-    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
-    &::after,
-    &::before {
-      border: 4px solid transparent;
-      content: '';
-      display: block;
-      height: 0;
-      right: 0;
-      top: 50%;
-      position: absolute;
-      width: 0;
-    }
+    @media screen and (min-width: 700px) {
+      padding-right: 0.5rem;
+      position: relative;
 
-    &::before {
-      border-bottom-color: ${props =>
-        props.ascending && props.orderedBy === `${props.name}_rank`
-          ? props.theme.color
-          : props.theme.borderColor};
-      margin-top: -9px;
-    }
+      &::after,
+      &::before {
+        border: 4px solid transparent;
+        content: '';
+        display: block;
+        height: 0;
+        right: 0;
+        top: 50%;
+        position: absolute;
+        width: 0;
+      }
 
-    &::after {
-      border-top-color: ${props =>
-        !props.ascending && props.orderedBy === `${props.name}_rank`
-          ? props.theme.color
-          : props.theme.borderColor};
-      margin-top: 1px;
+      &::before {
+        border-bottom-color: ${props =>
+          props.ascending && props.orderedBy === `${props.name}_rank`
+            ? props.theme.color
+            : props.theme.borderColor};
+        margin-top: -9px;
+      }
+
+      &::after {
+        border-top-color: ${props =>
+          !props.ascending && props.orderedBy === `${props.name}_rank`
+            ? props.theme.color
+            : props.theme.borderColor};
+        margin-top: 1px;
+      }
     }
   }
 
