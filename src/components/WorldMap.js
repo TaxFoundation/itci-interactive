@@ -46,6 +46,14 @@ const MapContainer = styled.div`
   position: relative;
 `;
 
+const StyledPath = styled.path`
+  fill: ${props => props.bg};
+  stroke: ${props => props.theme.white};
+  transition: fill 0.2s ease-in-out, stroke-width 0.2s ease-in-out;
+  stroke-linejoin: bevel;
+  stroke-width: ${props => (props.active ? 2 : 1)};
+`;
+
 const WorldMap = () => {
   const [mapData, setMapData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -90,20 +98,14 @@ const WorldMap = () => {
   const countries = mapData.map((c, i) => {
     const country = rankings.find(r => r.ISO_3 === c.id);
     const Path = () => (
-      <path
+      <StyledPath
         d={path(c)}
         id={`country-${c.id}`}
         onMouseEnter={() => country && setActiveCountry(country)}
-        stroke="#ffffff"
-        strokeWidth={
+        active={
           country && activeCountry && country.ISO_3 === activeCountry.ISO_3
-            ? 2
-            : 1
         }
-        strokeLinejoin="bevel"
-        fill={
-          country ? gradients[ranking](scaleRanks(country[ranking])) : '#bbb'
-        }
+        bg={country ? gradients[ranking](scaleRanks(country[ranking])) : '#bbb'}
       />
     );
     const Country = () =>
