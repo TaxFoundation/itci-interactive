@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const RankTypeSelector = styled.div`
-  display: none;
+  display: flex;
+  flex-wrap: wrap;
   font-size: calc(0.45rem + 0.45vw);
 
   @media screen and (min-width: 800px) {
-    display: flex;
     flex-wrap: nowrap;
   }
 `;
@@ -17,18 +17,27 @@ const RankTypeSelectorRank = styled.div`
     props.active ? props.theme.lightOrange : props.theme.white};
   border-bottom: 1px solid ${props => props.theme.borderColor};
   border-left: 1px solid ${props => props.theme.borderColor};
+  border-right: 1px solid ${props => props.theme.borderColor};
   border-top: 3px solid ${props => props.theme[props.rank]};
   color: ${props => props.theme.color};
   cursor: pointer;
   flex: 1 0 auto;
-  margin-top: 1rem;
-  padding: 1rem;
+  font-weight: ${props => (props.active ? 700 : 400)};
+  margin: 0.5rem 0.25rem 0;
+  padding: 0.5rem;
   text-align: center;
   text-decoration: none;
   transition: 0.2s ease-in-out background-color;
 
-  &:last-child {
-    border-right: 1px solid ${props => props.theme.borderColor};
+  @media screen and (min-width: 700px) {
+    border-left: 1px solid ${props => props.theme.borderColor};
+    border-right: none;
+    margin: 1rem 0 0;
+    padding: 1rem;
+
+    &:last-child {
+      border-right: 1px solid ${props => props.theme.borderColor};
+    }
   }
 
   &:active,
