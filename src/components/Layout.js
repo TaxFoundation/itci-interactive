@@ -7,6 +7,7 @@ import { Reset } from 'styled-reset';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
+import PopIn from './PopIn';
 import Theme from '../Theme';
 
 const GlobalStyle = createGlobalStyle`
@@ -59,6 +60,9 @@ const Layout = ({ children }) => (
             />
             <Main>{children}</Main>
             <Footer year={data.site.siteMetadata.year} />
+            <PopIn>
+              <p>Stuff goes here.</p>
+            </PopIn>
           </StyledLayout>
         </>
       </ThemeProvider>

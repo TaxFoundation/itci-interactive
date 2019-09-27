@@ -85,11 +85,8 @@ const Menu = ({ active, close, download }) => {
         <StyledCloseButton onClick={close}>Close Menu</StyledCloseButton>
         <ul>
           {countries.map(country => (
-            <li>
-              <StyledLink
-                key={`menu-link-${country.ISO_3}`}
-                to={`/${kebabCase(country.country)}`}
-              >
+            <li key={`menu-link-${country.ISO_3}`}>
+              <StyledLink to={`/${kebabCase(country.country)}`}>
                 {country.country}
               </StyledLink>
             </li>

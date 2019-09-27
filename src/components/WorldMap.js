@@ -59,7 +59,7 @@ const StyledPath = styled.path`
 
 const ConditionalLink = ({ url, children }) =>
   url ? (
-    <Link to={url} tabindex="-1">
+    <Link to={url} tabIndex="-1">
       {children}
     </Link>
   ) : (
