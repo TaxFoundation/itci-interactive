@@ -43,7 +43,7 @@ const RankName = styled.td`
 
 const RankingsTable = ({ activeCountry, ranks }) => (
   <Container>
-    <StyledBox>
+    <StyledBox style={{ height: '100%' }}>
       <h2>
         {activeCountry
           ? `${activeCountry.country}'s Rankings`
