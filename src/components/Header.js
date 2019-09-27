@@ -5,8 +5,7 @@ import { Link } from 'gatsby';
 
 import Theme from '../Theme';
 import Logo from './Logo';
-import MobileMenu from './MobileMenu';
-import DesktopMenu from './DesktopMenu';
+import Menu from './Menu';
 
 const StyledHeader = styled.header`
   background-color: ${props => props.theme.orange};
@@ -78,7 +77,7 @@ const HeaderNavigation = styled.nav`
   text-transform: uppercase;
 `;
 
-const MobileToggle = styled.button`
+const MenuToggle = styled.button`
   background-color: ${props => props.theme.white};
   border: 1px solid ${props => props.theme.white};
   border-radius: 4px;
@@ -86,13 +85,13 @@ const MobileToggle = styled.button`
   font-size: 1rem;
   padding: 0.5rem;
 
-  @media screen and (min-width: 700px) {
+  /* @media screen and (min-width: 700px) {
     display: none;
-  }
+  } */
 `;
 
 const Header = ({ year, siteTitle, download }) => {
-  const [mobileMenu, setMobileMenu] = useState(false);
+  const [menu, setMenu] = useState(false);
   return (
     <>
       <StyledHeader>
@@ -114,15 +113,14 @@ const Header = ({ year, siteTitle, download }) => {
         </HeaderContents>
         <HeaderSharing>Subscribe</HeaderSharing>
         <HeaderNavigation>
-          <DesktopMenu></DesktopMenu>
-          <MobileToggle onClick={() => setMobileMenu(true)}>Menu</MobileToggle>
+          <MenuToggle onClick={() => setMenu(true)}>Menu</MenuToggle>
         </HeaderNavigation>
       </StyledHeader>
-      <MobileMenu
-        active={mobileMenu}
-        close={() => setMobileMenu(false)}
+      <Menu
+        active={menu}
+        close={() => setMenu(false)}
         download={download}
-      ></MobileMenu>
+      ></Menu>
     </>
   );
 };
