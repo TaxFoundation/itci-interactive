@@ -164,7 +164,7 @@ const RanksingsTable = () => {
             onClick={() => order('international_rank')}
             name="international"
           >
-            <div>International Tax Rates</div>
+            <div>International Tax Rules</div>
           </RankHeading>
         </tr>
       </thead>
