@@ -21,6 +21,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: ${props => props.theme.fontWeight};
     line-height: 1.6;
   }
+
+  em {
+    font-style: italic;
+  }
 `;
 
 const StyledLayout = styled.div`

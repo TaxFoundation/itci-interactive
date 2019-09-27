@@ -12,7 +12,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['Lato:300,400,700', 'Oswald:300,400'],
+          families: ['Lato:300,400,400i,700', 'Oswald:300,400'],
         },
       },
     },
