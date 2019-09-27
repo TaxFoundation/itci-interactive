@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { kebabCase } from 'lodash';
 
 import useIndexRankings from '../data/useIndexRankings';
+import Divider from './Divider';
 
 const StyledMobileMenu = styled.div`
   background-color: ${props => props.theme.white};
@@ -28,6 +29,9 @@ const StyledMobileMenu = styled.div`
 
 const StyledLink = styled(Link)`
   color: ${props => props.theme.color};
+  font-size: 1.4rem;
+  margin: 0.25rem;
+  padding: 0.25rem;
   text-decoration: none;
 `;
 
@@ -39,6 +43,19 @@ const StyledCloseButton = styled.button`
   float: right;
   font-size: 1rem;
   padding: 0.5rem;
+`;
+
+const Download = styled.a`
+  background-color: ${props => props.theme.orange};
+  border: 1px solid ${props => props.theme.orange};
+  border-radius: 4px;
+  color: ${props => props.theme.white};
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
 `;
 
 const MobileMenu = ({ active, close }) => {
@@ -58,6 +75,14 @@ const MobileMenu = ({ active, close }) => {
           </li>
         ))}
       </ul>
+      <Divider></Divider>
+      <Download
+        href="https://taxfoundation.org/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Download the Full Study
+      </Download>
     </StyledMobileMenu>
   );
 };
