@@ -8,8 +8,16 @@ const StyledDesktopMenu = styled.div`
   }
 `;
 
-const DesktopMenu = props => <StyledDesktopMenu>stuff</StyledDesktopMenu>;
+const DesktopMenu = ({ download }) => (
+  <StyledDesktopMenu>
+    <a href={download} target="_blank" rel="noopener noreferrer">
+      Download the Full Study
+    </a>
+  </StyledDesktopMenu>
+);
 
-DesktopMenu.propTypes = {};
+DesktopMenu.propTypes = {
+  download: PropTypes.string.isRequired,
+};
 
 export default DesktopMenu;

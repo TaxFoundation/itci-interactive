@@ -58,7 +58,7 @@ const Download = styled.a`
   text-decoration: none;
 `;
 
-const MobileMenu = ({ active, close }) => {
+const MobileMenu = ({ active, close, download }) => {
   const countries = useIndexRankings();
   return (
     <StyledMobileMenu active={active}>
@@ -76,11 +76,7 @@ const MobileMenu = ({ active, close }) => {
         ))}
       </ul>
       <Divider></Divider>
-      <Download
-        href="https://taxfoundation.org/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <Download href={download} target="_blank" rel="noopener noreferrer">
         Download the Full Study
       </Download>
     </StyledMobileMenu>

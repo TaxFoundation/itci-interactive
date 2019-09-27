@@ -41,6 +41,7 @@ const Layout = ({ children }) => (
           siteMetadata {
             title
             year
+            download
           }
         }
       }
@@ -54,6 +55,7 @@ const Layout = ({ children }) => (
             <Header
               year={data.site.siteMetadata.year}
               siteTitle={data.site.siteMetadata.title}
+              download={data.site.siteMetadata.download}
             />
             <Main>{children}</Main>
             <Footer year={data.site.siteMetadata.year} />

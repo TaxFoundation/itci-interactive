@@ -91,7 +91,7 @@ const MobileToggle = styled.button`
   }
 `;
 
-const Header = ({ year, siteTitle }) => {
+const Header = ({ year, siteTitle, download }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
   return (
     <>
@@ -121,6 +121,7 @@ const Header = ({ year, siteTitle }) => {
       <MobileMenu
         active={mobileMenu}
         close={() => setMobileMenu(false)}
+        download={download}
       ></MobileMenu>
     </>
   );
@@ -129,6 +130,7 @@ const Header = ({ year, siteTitle }) => {
 Header.propTypes = {
   siteTitle: PropTypes.string,
   year: PropTypes.number,
+  download: PropTypes.string,
 };
 
 export default Header;
