@@ -7,12 +7,17 @@ const StyledPopIn = styled.div`
   background-color: ${props => props.theme.white};
   border-top: 3px solid ${props => props.theme.orange};
   bottom: 0;
+  display: none;
   left: 0;
   right: 0;
   position: fixed;
   transform: ${props => (props.active ? 'none' : 'translateY(100%)')};
   transition: transform 0.3s ease-in-out;
   z-index: 4;
+
+  @media screen and (min-width: 1120px) {
+    display: block;
+  }
 `;
 
 const Container = styled.div`

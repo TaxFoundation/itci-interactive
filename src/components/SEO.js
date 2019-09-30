@@ -69,7 +69,12 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <script
+        type="text/javascript"
+        src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d8e1e7aec6a6a96"
+      ></script>
+    </Helmet>
   );
 }
 
