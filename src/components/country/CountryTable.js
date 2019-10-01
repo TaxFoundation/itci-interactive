@@ -51,8 +51,8 @@ const Rank = styled.td`
   text-align: center;
 `;
 
-const CountryTable = ({ rankings }) => (
-  <StyledRankingsTable>
+const CountryTable = ({ rankings, style }) => (
+  <StyledRankingsTable style={style}>
     <caption>{`${rankings.country}'s Rankings`}</caption>
     <thead>
       <tr>
@@ -75,6 +75,7 @@ const CountryTable = ({ rankings }) => (
 
 CountryTable.propTypes = {
   rankings: PropTypes.object.isRequired,
+  style: PropTypes.object,
 };
 
 export default CountryTable;

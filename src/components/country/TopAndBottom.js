@@ -4,6 +4,14 @@ import styled from 'styled-components';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { kebabCase } from 'lodash';
 
+const Container = styled.div`
+  border: 1px solid ${props => props.theme.borderColor};
+  display: grid;
+  grid-gap: 1rem;
+  grid-template: auto / repeat(2, 1fr);
+  padding: 1rem;
+`;
+
 const StyledCountry = styled.li`
   border-bottom: 1px solid ${props => props.theme.borderColor};
 
@@ -28,6 +36,8 @@ const StyledLink = styled(Link)`
 const TopBottomHeading = styled.h3`
   font-size: 1.2rem;
   font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.5rem;
 `;
 
 const Country = ({ country, active }) => (
@@ -43,7 +53,7 @@ Country.propTypes = {
   country: PropTypes.object.isRequired,
 };
 
-const TopAndBottom = ({ currentCountryISO3 }) => {
+const TopAndBottom = ({ currentCountryISO3, style }) => {
   const { allIndexCsv } = useStaticQuery(graphql`
     query theList {
       allIndexCsv {
@@ -65,7 +75,7 @@ const TopAndBottom = ({ currentCountryISO3 }) => {
   console.log(currentCountryISO3);
 
   return (
-    <div>
+    <Container style={style}>
       <section>
         <TopBottomHeading>Top Five</TopBottomHeading>
         <ol>
@@ -90,12 +100,13 @@ const TopAndBottom = ({ currentCountryISO3 }) => {
           ))}
         </ol>
       </section>
-    </div>
+    </Container>
   );
 };
 
 TopAndBottom.propTypes = {
   currentCountryISO3: PropTypes.string.isRequired,
+  style: PropTypes.object,
 };
 
 export default TopAndBottom;

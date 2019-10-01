@@ -21,7 +21,7 @@ const CountryHeading = styled.h1`
 
 const Summary = styled.p`
   background-color: ${props => props.theme.lightOrange};
-  margin: 1rem 0;
+  margin: 0;
   padding: 1rem;
   text-align: center;
 `;
@@ -29,7 +29,17 @@ const Summary = styled.p`
 const DataGrid = styled.div`
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-areas:
+    'summary'
+    'table'
+    'comparison';
+
+  @media screen and (min-width: 700px) {
+    grid-template: repeat(2, auto) / 1fr 2fr;
+    grid-template-areas:
+      'table summary'
+      'table comparison';
+  }
 `;
 
 const country = ({ data }) => {
@@ -39,11 +49,13 @@ const country = ({ data }) => {
     <Layout>
       <SEO title={theCountry.country} />
       <CountryHeading>{theCountry.country}</CountryHeading>
-      <Summary>{theCountry.ranking}</Summary>
       <DataGrid>
-        <CountryTable rankings={data.indexCsv} />
-        <div>Map Goes Here</div>
-        <TopAndBottom currentCountryISO3={theCountry.ISO_3} />
+        <CountryTable style={{ gridArea: 'table' }} rankings={data.indexCsv} />
+        <Summary style={{ gridArea: 'summary' }}>{theCountry.ranking}</Summary>
+        <TopAndBottom
+          style={{ gridArea: 'comparison' }}
+          currentCountryISO3={theCountry.ISO_3}
+        />
       </DataGrid>
       <Divider />
       <Profiles profiles={data.profilesCsv}></Profiles>
