@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql } from 'gatsby';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
 
@@ -61,7 +61,10 @@ const Layout = ({ children }) => (
             <Main>{children}</Main>
             <Footer year={data.site.siteMetadata.year} />
             <PopIn>
-              <p>Stuff goes here.</p>
+              <p>
+                Get email updates about global tax policy from the Tax
+                Foundation. <Link to="/subscribe">Subscribe today!</Link>
+              </p>
             </PopIn>
           </StyledLayout>
         </>

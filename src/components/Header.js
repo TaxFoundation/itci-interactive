@@ -10,22 +10,17 @@ import Menu from './Menu';
 const StyledHeader = styled.header`
   background-color: ${props => props.theme.orange};
   color: ${props => props.theme.white};
-  padding: 1rem;
+`;
+
+const StyledHeaderContainer = styled.div`
   display: grid;
   grid-gap: 1rem;
   justify-content: center;
-  grid-template: auto / 1fr auto;
+  grid-template: auto / 1fr;
   grid-template-areas: 'title nav';
-
-  @media screen and (min-width: 700px) {
-    display: grid;
-    grid-gap: 1rem;
-    justify-content: center;
-    grid-template: repeat(2, 1fr) / repeat(2, minmax(auto, 480px));
-    grid-template-areas:
-      'title sharing'
-      'title nav';
-  }
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 1rem;
 
   h1,
   a,
@@ -58,17 +53,6 @@ const HeaderContents = styled.div`
   grid-area: title;
 `;
 
-const HeaderSharing = styled.div`
-  align-items: end;
-  display: grid;
-  grid-area: sharing;
-  justify-items: end;
-
-  @media screen and (max-width: 700px) {
-    display: none;
-  }
-`;
-
 const HeaderNavigation = styled.nav`
   align-items: end;
   display: grid;
@@ -84,17 +68,13 @@ const MenuToggle = styled.button`
   color: ${props => props.theme.orange};
   font-size: 1rem;
   padding: 0.5rem;
-
-  /* @media screen and (min-width: 700px) {
-    display: none;
-  } */
 `;
 
 const Header = ({ year, siteTitle, download }) => {
   const [menu, setMenu] = useState(false);
   return (
-    <>
-      <StyledHeader>
+    <StyledHeader>
+      <StyledHeaderContainer>
         <HeaderContents>
           <div>
             <a
@@ -111,17 +91,16 @@ const Header = ({ year, siteTitle, download }) => {
             </h1>
           </div>
         </HeaderContents>
-        <HeaderSharing>Subscribe</HeaderSharing>
         <HeaderNavigation>
           <MenuToggle onClick={() => setMenu(true)}>Menu</MenuToggle>
         </HeaderNavigation>
-      </StyledHeader>
+      </StyledHeaderContainer>
       <Menu
         active={menu}
         close={() => setMenu(false)}
         download={download}
       ></Menu>
-    </>
+    </StyledHeader>
   );
 };
 
