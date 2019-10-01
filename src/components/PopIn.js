@@ -49,7 +49,7 @@ const PopIn = ({ children }) => {
   };
 
   useEffect(() => {
-    setDismissed(JSON.parse(getCookie('itci-pop-in-dismissed')));
+    setDismissed(JSON.parse(getCookie('itci-pop-in-dismissed')) || false);
     let timer;
     if (!active && !dismissed) {
       timer = setTimeout(() => setActive(true), 30000);
