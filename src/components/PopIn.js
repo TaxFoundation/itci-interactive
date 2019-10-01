@@ -7,6 +7,8 @@ const StyledPopIn = styled.div`
   background-color: ${props => props.theme.white};
   border-top: 3px solid ${props => props.theme.orange};
   bottom: 0;
+  box-shadow: ${props =>
+    props.active ? `0 -2px 10px 1px ${props.theme.borderColor}` : 'none'};
   display: none;
   left: 0;
   right: 0;
