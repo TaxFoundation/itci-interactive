@@ -58,7 +58,7 @@ const PopIn = ({ children }) => {
   return (
     <StyledPopIn active={active}>
       <Container>
-        {children}
+        {React.cloneElement(children, { dismiss })}
         <Close onClick={() => dismiss()}>&otimes;</Close>
       </Container>
     </StyledPopIn>

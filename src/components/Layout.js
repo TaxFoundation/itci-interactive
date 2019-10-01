@@ -9,6 +9,7 @@ import Main from './Main';
 import Footer from './Footer';
 import PopIn from './PopIn';
 import Theme from '../Theme';
+import { OrangeButton } from './Button';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -33,6 +34,26 @@ const StyledLayout = styled.div`
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 `;
+
+const PopInContent = ({ dismiss }) => (
+  <div>
+    <p style={{ textAlign: 'center' }}>
+      Get email updates about global tax policy from the Tax Foundation.
+    </p>
+    <OrangeButton
+      style={{ maxWidth: '480px', margin: '0.5rem auto' }}
+      as={Link}
+      to="/subscribe"
+      onClick={dismiss}
+    >
+      Subscribe today!
+    </OrangeButton>
+  </div>
+);
+
+PopInContent.propTypes = {
+  dismiss: PropTypes.func,
+};
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -61,10 +82,7 @@ const Layout = ({ children }) => (
             <Main>{children}</Main>
             <Footer year={data.site.siteMetadata.year} />
             <PopIn>
-              <p>
-                Get email updates about global tax policy from the Tax
-                Foundation. <Link to="/subscribe">Subscribe today!</Link>
-              </p>
+              <PopInContent></PopInContent>
             </PopIn>
           </StyledLayout>
         </>
