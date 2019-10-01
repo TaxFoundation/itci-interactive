@@ -5,19 +5,23 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import { kebabCase } from 'lodash';
 
 const StyledCountry = styled.li`
-  background-color: ${props =>
-    props.active ? props.theme.lightOrange : props.theme.white};
   border-bottom: 1px solid ${props => props.theme.borderColor};
-  padding: 0.25rem;
 
   &:last-child {
     border: none;
   }
+`;
 
-  a {
-    color: ${props => props.theme.color};
-    display: block;
-    text-decoration: none;
+const StyledLink = styled(Link)`
+  background-color: ${props =>
+    props.active ? props.theme.lightOrange : props.theme.white};
+  color: ${props => props.theme.color};
+  display: block;
+  padding: 0.25rem;
+  text-decoration: none;
+
+  &:hover {
+    background-color: ${props => props.theme.lightOrange};
   }
 `;
 
@@ -27,10 +31,10 @@ const TopBottomHeading = styled.h3`
 `;
 
 const Country = ({ country, active }) => (
-  <StyledCountry active={active}>
-    <Link to={`/${kebabCase(country.country)}`}>
+  <StyledCountry>
+    <StyledLink active={active} to={`/${kebabCase(country.country)}`}>
       {`#${country.final_rank} ${country.country}`}
-    </Link>
+    </StyledLink>
   </StyledCountry>
 );
 
