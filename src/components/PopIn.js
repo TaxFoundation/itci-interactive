@@ -41,9 +41,7 @@ const Close = styled.button`
 
 const PopIn = ({ children }) => {
   const [active, setActive] = useState(false);
-  const [dismissed, setDismissed] = useState(
-    JSON.parse(getCookie('itci-pop-in-dismissed')) || false
-  );
+  const [dismissed, setDismissed] = useState(false);
   const dismiss = () => {
     setActive(false);
     setDismissed(true);
@@ -51,6 +49,7 @@ const PopIn = ({ children }) => {
   };
 
   useEffect(() => {
+    setDismissed(JSON.parse(getCookie('itci-pop-in-dismissed')));
     let timer;
     if (!active && !dismissed) {
       timer = setTimeout(() => setActive(true), 30000);
