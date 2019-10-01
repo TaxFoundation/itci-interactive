@@ -54,19 +54,6 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-const Download = styled.a`
-  background-color: ${props => props.theme.orange};
-  border: 1px solid ${props => props.theme.orange};
-  border-radius: 4px;
-  color: ${props => props.theme.white};
-  display: block;
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  text-align: center;
-  text-decoration: none;
-`;
-
 const Menu = ({ active, close, download }) => {
   const countries = useIndexRankings();
   return (
