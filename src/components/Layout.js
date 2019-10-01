@@ -27,6 +27,10 @@ const GlobalStyle = createGlobalStyle`
   em {
     font-style: italic;
   }
+
+  a {
+    color: ${props => props.theme.orange};
+  }
 `;
 
 const StyledLayout = styled.div`
