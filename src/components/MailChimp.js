@@ -15,6 +15,7 @@ const Title = styled.h2`
   color: ${props => props.theme.orange};
   font-family: ${props => props.theme.fontFamilies.oswald};
   font-size: 2rem;
+  margin: 1rem 0;
   text-align: center;
 `;
 
@@ -67,6 +68,42 @@ const Select = styled.select`
   }
 `;
 
+const Everything = styled.div`
+  background-color: ${props => props.theme.lightOrange};
+  margin: 0.5rem 0;
+  padding: 1rem;
+`;
+
+const Disclaimer = styled.p`
+  color: ${props => props.theme.borderColor};
+  font-style: italic;
+  margin: 0.5rem 0;
+
+  a {
+    color: ${props => props.theme.borderColor};
+  }
+`;
+
+const Submit = styled.button`
+  background-color: ${props => props.theme.white};
+  border: 1px solid ${props => props.theme.orange};
+  border-radius: 4px;
+  color: ${props => props.theme.orange};
+  cursor: pointer;
+  font-family: ${props => props.theme.fontFamilies.lato};
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  padding: 1rem;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    background-color: ${props => props.theme.orange};
+    color: ${props => props.theme.white};
+  }
+`;
+
 const MailChimp = () => (
   <div id="mc_embed_signup">
     <form
@@ -80,14 +117,9 @@ const MailChimp = () => (
     >
       <div id="mc_embed_signup_scroll">
         <Title>Subscribe to the Tax Foundation's Global Updates</Title>
-        <div className="indicates-required">
-          <span className="asterisk">*</span> indicates required
-        </div>
         <FieldsContainer>
           <div className="mc-field-group">
-            <Label htmlFor="mce-FNAME">
-              First Name <span className="asterisk">*</span>
-            </Label>
+            <Label htmlFor="mce-FNAME">First Name</Label>
             <TextInput
               type="text"
               value=""
@@ -97,9 +129,7 @@ const MailChimp = () => (
             />
           </div>
           <div className="mc-field-group">
-            <Label htmlFor="mce-EMAIL">
-              Email Address <span className="asterisk">*</span>
-            </Label>
+            <Label htmlFor="mce-EMAIL">Email Address</Label>
             <TextInput
               type="email"
               value=""
@@ -109,9 +139,7 @@ const MailChimp = () => (
             />
           </div>
           <div className="mc-field-group">
-            <Label htmlFor="mce-COUNTRY">
-              Country <span className="asterisk">*</span>
-            </Label>
+            <Label htmlFor="mce-COUNTRY">Country</Label>
             <Select name="COUNTRY" className="required" id="mce-COUNTRY">
               <option value=""></option>
               <option value="The United States">The United States</option>
@@ -428,8 +456,7 @@ const MailChimp = () => (
             </Select>
           </div>
         </FieldsContainer>
-        <div className="mc-field-group input-group">
-          <strong>Give Me Everything </strong>
+        <Everything className="mc-field-group input-group">
           <ul>
             <li>
               <input
@@ -439,11 +466,12 @@ const MailChimp = () => (
                 id="mce-EVERYTHING-0"
               />
               <label htmlFor="mce-EVERYTHING-0">
-                Sign up to receive updates about all of our work in the U.S.
+                Sign up to also receive updates about all of our work in the
+                U.S.
               </label>
             </li>
           </ul>
-        </div>
+        </Everything>
         <div
           id="mergeRow-gdpr"
           className="mergeRow gdpr-mergeRow content__gdprBlock mc-field-group"
@@ -463,20 +491,6 @@ const MailChimp = () => (
                 checked
               />
             </fieldset>
-          </div>
-          <div className="content__gdprLegal">
-            <p>
-              We use Mailchimp as our marketing platform. By clicking below to
-              subscribe, you acknowledge that your information will be
-              transferred to Mailchimp for processing.{' '}
-              <a
-                href="https://mailchimp.com/legal/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn more about Mailchimp's privacy practices here.
-              </a>
-            </p>
           </div>
         </div>
         <div id="mce-responses" className="clear">
@@ -503,16 +517,26 @@ const MailChimp = () => (
           />
         </div>
         <div className="clear">
-          <input
-            type="submit"
-            value="Subscribe"
-            name="subscribe"
-            id="mc-embedded-subscribe"
-            className="button"
-          />
+          <Submit type="submit" name="subscribe" id="mc-embedded-subscribe">
+            Subscribe
+          </Submit>
         </div>
       </div>
     </form>
+    <div className="content__gdprLegal">
+      <Disclaimer>
+        We use Mailchimp as our marketing platform. By clicking below to
+        subscribe, you acknowledge that your information will be transferred to
+        Mailchimp for processing.{' '}
+        <a
+          href="https://mailchimp.com/legal/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn more about Mailchimp's privacy practices here.
+        </a>
+      </Disclaimer>
+    </div>
   </div>
 );
 
