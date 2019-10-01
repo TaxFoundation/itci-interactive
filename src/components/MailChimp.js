@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { OrangeButton } from './Button';
+
 const FieldsContainer = styled.div`
   display: grid;
   grid-gap: 1rem;
@@ -81,26 +83,6 @@ const Disclaimer = styled.p`
 
   a {
     color: ${props => props.theme.borderColor};
-  }
-`;
-
-const Submit = styled.button`
-  background-color: ${props => props.theme.white};
-  border: 1px solid ${props => props.theme.orange};
-  border-radius: 4px;
-  color: ${props => props.theme.orange};
-  cursor: pointer;
-  font-family: ${props => props.theme.fontFamilies.lato};
-  font-size: 1rem;
-  margin: 0.5rem 0;
-  padding: 1rem;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  width: 100%;
-
-  &:hover,
-  &:focus {
-    background-color: ${props => props.theme.orange};
-    color: ${props => props.theme.white};
   }
 `;
 
@@ -517,9 +499,13 @@ const MailChimp = () => (
           />
         </div>
         <div className="clear">
-          <Submit type="submit" name="subscribe" id="mc-embedded-subscribe">
+          <OrangeButton
+            type="submit"
+            name="subscribe"
+            id="mc-embedded-subscribe"
+          >
             Subscribe
-          </Submit>
+          </OrangeButton>
         </div>
       </div>
     </form>

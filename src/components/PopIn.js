@@ -49,7 +49,7 @@ const PopIn = ({ children }) => {
   useEffect(() => {
     let timer;
     if (!active && !dismissed) {
-      timer = setTimeout(() => setActive(true), 2000);
+      timer = setTimeout(() => setActive(true), 30000);
     }
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -6,6 +6,7 @@ import { kebabCase } from 'lodash';
 
 import useIndexRankings from '../data/useIndexRankings';
 import Divider from './Divider';
+import { BlackButton, OrangeButton } from './Button';
 
 const FadeIn = keyframes`
   0% {
@@ -53,50 +54,6 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-const StyledSubscribeButton = styled(Link)`
-  background-color: ${props => props.theme.white};
-  border: 1px solid ${props => props.theme.orange};
-  border-radius: 4px;
-  color: ${props => props.theme.orange};
-  display: block;
-  font-size: 1rem;
-  line-height: 1.5;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.1s ease-in, border 0.1s ease-in,
-    color 0.1s ease-in;
-
-  &:hover,
-  &:focus {
-    background-color: ${props => props.theme.orange};
-    color: ${props => props.theme.white};
-  }
-`;
-
-const StyledCloseButton = styled.button`
-  background-color: ${props => props.theme.white};
-  border: 1px solid ${props => props.theme.color};
-  border-radius: 4px;
-  color: ${props => props.theme.color};
-  cursor: pointer;
-  display: block;
-  font-size: 1rem;
-  line-height: 1.5;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  transition: background-color 0.1s ease-in, border 0.1s ease-in,
-    color 0.1s ease-in;
-  width: 100%;
-
-  &:hover,
-  &:focus {
-    background-color: ${props => props.theme.color};
-    color: ${props => props.theme.white};
-  }
-`;
-
 const Download = styled.a`
   background-color: ${props => props.theme.orange};
   border: 1px solid ${props => props.theme.orange};
@@ -116,8 +73,10 @@ const Menu = ({ active, close, download }) => {
     <>
       <BG active={active} onClick={close}></BG>
       <StyledMenu active={active}>
-        <StyledCloseButton onClick={close}>Close Menu</StyledCloseButton>
-        <StyledSubscribeButton to="/subscribe">Subscribe</StyledSubscribeButton>
+        <BlackButton onClick={close}>Close Menu</BlackButton>
+        <OrangeButton as={Link} to="/subscribe">
+          Subscribe
+        </OrangeButton>
         <ul>
           {countries.map(country => (
             <li key={`menu-link-${country.ISO_3}`}>
@@ -128,9 +87,14 @@ const Menu = ({ active, close, download }) => {
           ))}
         </ul>
         <Divider></Divider>
-        <Download href={download} target="_blank" rel="noopener noreferrer">
+        <OrangeButton
+          as="a"
+          href={download}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Download the Full Study
-        </Download>
+        </OrangeButton>
       </StyledMenu>
     </>
   );

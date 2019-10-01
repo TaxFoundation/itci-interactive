@@ -66,8 +66,15 @@ const MenuToggle = styled.button`
   border: 1px solid ${props => props.theme.white};
   border-radius: 4px;
   color: ${props => props.theme.orange};
+  cursor: pointer;
   font-size: 1rem;
   padding: 0.5rem;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: ${props => props.theme.lightOrange};
+  }
 `;
 
 const Header = ({ year, siteTitle, download }) => {
