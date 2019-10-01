@@ -5,6 +5,7 @@ module.exports = {
     description: `The International Tax Competitiveness Index (ITCI) seeks to measure the extent to which a country’s tax system adheres to two important aspects of tax policy: competitiveness and neutrality.`,
     author: `@taxfoundation`,
     download: 'https://taxfoundation.org/2019-international-index/',
+    root: 'https://tax-competition.org',
   },
   plugins: [
     `gatsby-plugin-styled-components`,

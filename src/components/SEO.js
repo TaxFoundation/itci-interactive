@@ -19,6 +19,7 @@ function SEO({ description, lang, meta, title }) {
             title
             description
             author
+            root
           }
         }
         file(relativePath: { eq: "itci.png" }) {
@@ -62,7 +63,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: 'og:image',
-          content: `.${file.childImageSharp.fluid.src}`,
+          content: `${site.siteMetadata.root}${file.childImageSharp.fluid.src}`,
         },
         {
           name: `twitter:card`,
@@ -82,7 +83,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: 'twitter:image',
-          content: `.${file.childImageSharp.fluid.src}`,
+          content: `${site.siteMetadata.root}${file.childImageSharp.fluid.src}`,
         },
       ].concat(meta)}
     >
