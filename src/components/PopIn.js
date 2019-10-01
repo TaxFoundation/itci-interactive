@@ -31,7 +31,9 @@ const Container = styled.div`
   max-width: 960px;
 `;
 
-const Close = styled.div`
+const Close = styled.button`
+  background-color: transparent;
+  border: none;
   color: ${props => props.theme.orange};
   cursor: pointer;
   font-size: 2rem;
