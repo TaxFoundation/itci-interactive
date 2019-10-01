@@ -15,6 +15,7 @@ const CountryHeading = styled.h1`
   font-family: ${props => props.theme.fontFamilies.oswald};
   font-size: 3rem;
   font-weight: ${props => props.theme.fontWeight};
+  margin: 1rem 0;
   text-align: center;
   text-transform: uppercase;
 `;
