@@ -104,7 +104,6 @@ const MailChimp = () => (
             <Label htmlFor="mce-FNAME">First Name</Label>
             <TextInput
               type="text"
-              value=""
               name="FNAME"
               className="required"
               id="mce-FNAME"
@@ -114,7 +113,6 @@ const MailChimp = () => (
             <Label htmlFor="mce-EMAIL">Email Address</Label>
             <TextInput
               type="email"
-              value=""
               name="EMAIL"
               className="required email"
               id="mce-EMAIL"
