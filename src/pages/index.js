@@ -29,10 +29,9 @@ const IndexPage = () => (
         (<em>ITCI</em>) measures the degree to which the 36 OECD countries’ tax
         systems promote competitiveness through low tax burdens on business
         investment and neutrality through a well-structured tax code. The{' '}
-        <em>ITCI</em>
-        considers more than 40 variables across five categories: Corporate
-        Taxes, Individual Taxes, Consumption Taxes, Property Taxes, and
-        International Tax Rules.
+        <em>ITCI</em> considers more than 40 variables across five categories:
+        Corporate Taxes, Individual Taxes, Consumption Taxes, Property Taxes,
+        and International Tax Rules.
       </p>
       <p>
         The <em>ITCI</em> attempts to display not only which countries provide
