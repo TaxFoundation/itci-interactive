@@ -22,7 +22,7 @@ function SEO({ description, lang, meta, title }) {
             root
           }
         }
-        file(relativePath: { eq: "itci.png" }) {
+        file(relativePath: { eq: "itci.jpg" }) {
           childImageSharp {
             fluid {
               src
