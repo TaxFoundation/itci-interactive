@@ -48,7 +48,19 @@ const country = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={theCountry.country} />
+      <SEO
+        title={theCountry.country}
+        meta={[
+          {
+            property: 'og:image',
+            content: `${data.site.siteMetadata.root}${data.file.childImageSharp.fluid.src}`,
+          },
+          {
+            property: 'twitter:image',
+            content: `${data.site.siteMetadata.root}${data.file.childImageSharp.fluid.src}`,
+          },
+        ]}
+      />
       <CountryHeading>{theCountry.country}</CountryHeading>
       <DataGrid>
         <CountryTable style={{ gridArea: 'table' }} rankings={data.indexCsv} />
@@ -71,7 +83,7 @@ country.propTypes = {
 export default country;
 
 export const query = graphql`
-  query($ISO_3: String!) {
+  query($ISO_3: String!, $ISO_2: String!) {
     indexCsv(ISO_3: { eq: $ISO_3 }) {
       country
       year
@@ -98,6 +110,18 @@ export const query = graphql`
       weakness_1
       weakness_2
       weakness_3
+    }
+    site {
+      siteMetadata {
+        root
+      }
+    }
+    file(name: { eq: $ISO_2 }) {
+      childImageSharp {
+        fluid {
+          src
+        }
+      }
     }
   }
 `;

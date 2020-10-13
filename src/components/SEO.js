@@ -38,54 +38,66 @@ function SEO({ description, lang, meta, title }) {
     ? `${title} | ${site.siteMetadata.title}`
     : site.siteMetadata.title;
 
+  const metaDefaults = [
+    {
+      name: `description`,
+      content: metaDescription,
+    },
+    {
+      property: `og:title`,
+      content: theTitle,
+    },
+    {
+      property: `og:description`,
+      content: metaDescription,
+    },
+    {
+      property: `og:type`,
+      content: `website`,
+    },
+    {
+      property: 'og:image',
+      content: `${site.siteMetadata.root}${file.childImageSharp.fluid.src}`,
+    },
+    {
+      name: `twitter:card`,
+      content: `summary`,
+    },
+    {
+      name: `twitter:creator`,
+      content: site.siteMetadata.author,
+    },
+    {
+      name: `twitter:title`,
+      content: theTitle,
+    },
+    {
+      name: `twitter:description`,
+      content: metaDescription,
+    },
+    {
+      property: 'twitter:image',
+      content: `${site.siteMetadata.root}${file.childImageSharp.fluid.src}`,
+    },
+  ];
+
+  meta.forEach(m => {
+    const propExists = metaDefaults.find(d => d.property === m.property);
+    if (propExists) {
+      propExists.content = m.content;
+    }
+    if (!propExists) {
+      metaDefaults.push(m);
+    }
+  });
+
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
       title={theTitle}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: theTitle,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          property: 'og:image',
-          content: `${site.siteMetadata.root}${file.childImageSharp.fluid.src}`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: theTitle,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-        {
-          property: 'twitter:image',
-          content: `${site.siteMetadata.root}${file.childImageSharp.fluid.src}`,
-        },
-      ].concat(meta)}
+      meta={metaDefaults}
     >
       <script
         type="text/javascript"
