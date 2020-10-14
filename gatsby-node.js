@@ -34,6 +34,7 @@ exports.createPages = async ({ graphql, actions }) => {
       path: _.kebabCase(node.country),
       component: path.resolve('./src/templates/country.js'),
       context: {
+        ISO_2: node.ISO_2,
         ISO_3: node.ISO_3,
       },
     });
