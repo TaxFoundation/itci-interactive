@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
+import { kebabCase } from 'lodash';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
@@ -9,6 +10,7 @@ import CountryTable from '../components/country/CountryTable';
 import TopAndBottom from '../components/country/TopAndBottom';
 import Profiles from '../components/country/Profiles';
 import Divider from '../components/Divider';
+import { OrangeButton } from '../components/Button';
 
 const CountryHeading = styled.h1`
   color: ${props => props.theme.orange};
@@ -72,6 +74,18 @@ const country = ({ data }) => {
       </DataGrid>
       <Divider />
       <Profiles profiles={data.profilesCsv}></Profiles>
+      <Divider />
+      <OrangeButton
+        style={{ maxWidth: '480px', margin: '0.5rem auto' }}
+        as="a"
+        href={`https://taxfoundation.org/country/${kebabCase(
+          theCountry.country
+        )}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {`Learn more about the tax system in ${theCountry.country}`}
+      </OrangeButton>
     </Layout>
   );
 };
