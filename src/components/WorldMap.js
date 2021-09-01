@@ -96,7 +96,7 @@ const WorldMap = () => {
     income_rank: interpolateYlGn,
     consumption_rank: interpolatePuBuGn,
     property_rank: interpolateGnBu,
-    international_rank: interpolateYlGnBu,
+    crossborder_rank: interpolateYlGnBu,
   };
 
   const rankings = useIndexRankings();

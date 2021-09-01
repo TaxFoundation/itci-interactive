@@ -109,8 +109,8 @@ export const query = graphql`
       property
       income_rank
       income
-      international_rank
-      international
+      crossborder_rank
+      crossborder
       final_rank
       final
       ISO_2

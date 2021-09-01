@@ -18,7 +18,7 @@ const Theme = {
   income: '#CFEA8A',
   consumption: '#7FC98E',
   property: '#3FA38F',
-  international: '#1F7B82',
+  crossborder: '#1F7B82',
 };
 
 export default Theme;
