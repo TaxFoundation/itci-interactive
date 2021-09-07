@@ -164,7 +164,7 @@ const RanksingsTable = () => {
             onClick={() => order('crossborder_rank')}
             name="crossborder"
           >
-            <div>Crossborder Tax Rules</div>
+            <div>Crossborder Taxes</div>
           </RankHeading>
         </tr>
       </thead>
