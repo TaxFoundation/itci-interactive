@@ -31,7 +31,7 @@ const IndexPage = () => (
         investment and neutrality through a well-structured tax code. The{' '}
         <em>ITCI</em> considers more than 40 variables across five categories:
         Corporate Taxes, Individual Taxes, Consumption Taxes, Property Taxes,
-        and Crossborder Tax Rules.
+        and Cross-border Tax Rules.
       </p>
       <p>
         The <em>ITCI</em> attempts to display not only which countries provide
