@@ -21,7 +21,7 @@ const Colors = keyframes`
     color: ${Theme.property};
   }
   83% {
-    color: ${Theme.international};
+    color: ${Theme.crossborder};
   }
   100% {
     color: ${Theme.final};

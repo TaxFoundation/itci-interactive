@@ -54,17 +54,17 @@ const RankHeading = styled.th`
 
       &::before {
         border-bottom-color: ${props =>
-          props.ascending && props.orderedBy === `${props.name}_rank`
-            ? props.theme.color
-            : props.theme.borderColor};
+    props.ascending && props.orderedBy === `${props.name}_rank`
+      ? props.theme.color
+      : props.theme.borderColor};
         margin-top: -9px;
       }
 
       &::after {
         border-top-color: ${props =>
-          !props.ascending && props.orderedBy === `${props.name}_rank`
-            ? props.theme.color
-            : props.theme.borderColor};
+    !props.ascending && props.orderedBy === `${props.name}_rank`
+      ? props.theme.color
+      : props.theme.borderColor};
         margin-top: 1px;
       }
     }
@@ -161,10 +161,10 @@ const RanksingsTable = () => {
           <RankHeading
             ascending={isAscending}
             orderedBy={orderedBy}
-            onClick={() => order('international_rank')}
-            name="international"
+            onClick={() => order('crossborder_rank')}
+            name="crossborder"
           >
-            <div>International Tax Rules</div>
+            <div>Crossborder Taxes</div>
           </RankHeading>
         </tr>
       </thead>
@@ -181,7 +181,7 @@ const RanksingsTable = () => {
             <Rank>{country.income_rank}</Rank>
             <Rank>{country.consumption_rank}</Rank>
             <Rank>{country.property_rank}</Rank>
-            <Rank>{country.international_rank}</Rank>
+            <Rank>{country.crossborder_rank}</Rank>
           </tr>
         ))}
       </tbody>

@@ -94,7 +94,7 @@ const Footer = ({ year }) => (
           </a>{' '}
           is the nation’s leading independent tax policy nonprofit. Since 1937,
           our principled research, insightful analysis, and engaged experts have
-          informed smarter tax policyat the federal, state, and global levels.
+          informed smarter tax policy at the federal, state, and global levels.
           For over 80 years, our goal has remained the same: to improve lives
           through tax policies that lead to greater economic growth and
           opportunity.

@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `International Tax Competitiveness Index`,
-    year: 2020,
+    year: 2021,
     description: `The International Tax Competitiveness Index (ITCI) seeks to measure the extent to which a country’s tax system adheres to two important aspects of tax policy: competitiveness and neutrality.`,
     author: `@taxfoundation`,
     download:

@@ -18,8 +18,8 @@ exports.createPages = async ({ graphql, actions }) => {
             property
             income_rank
             income
-            international_rank
-            international
+            crossborder_rank
+            crossborder
             final_rank
             final
             ISO_2
