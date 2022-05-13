@@ -61,7 +61,7 @@ const Menu = ({ active, close, download }) => {
       <BG active={active} onClick={close}></BG>
       <StyledMenu active={active}>
         <BlackButton onClick={close}>Close Menu</BlackButton>
-        <OrangeButton as={Link} to="/subscribe">
+        <OrangeButton as={Link} to="https://taxfoundation.org/tax-newsletter/">
           Subscribe
         </OrangeButton>
         <ul>

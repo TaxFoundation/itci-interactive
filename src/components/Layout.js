@@ -47,7 +47,7 @@ const PopInContent = ({ dismiss }) => (
     <OrangeButton
       style={{ maxWidth: '480px', margin: '0.5rem auto' }}
       as={Link}
-      to="/subscribe"
+      to="https://taxfoundation.org/tax-newsletter/"
       onClick={dismiss}
     >
       Subscribe today!
